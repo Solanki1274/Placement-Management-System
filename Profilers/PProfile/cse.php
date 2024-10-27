@@ -69,8 +69,8 @@
 
 		
 $num_rec_per_page=2;
-mysql_connect('localhost','root','');
-mysql_select_db('details');
+mysql_connect('localhost','harsh','harsh2005');
+mysql_select_db('placement');
 if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
 $start_from = ($page-1) * $num_rec_per_page; 
 $sql = "SELECT * FROM basicdetails where Approve='1' and Branch='CSE' LIMIT $start_from, $num_rec_per_page"; 

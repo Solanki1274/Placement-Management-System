@@ -201,8 +201,8 @@
           </div> <!-- Second row ends -->
         
           <footer class="text-right">
-           <p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+           <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
             </p>
           </footer>         
         </div>

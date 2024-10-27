@@ -57,8 +57,7 @@
 				  </thead>
 			   </tr>			   
  <?php		
-mysql_connect('localhost','root','');
-mysql_select_db('placement');
+$connection = new mysqli('localhost', 'harsh', 'harsh2005', 'placement');
 if(isset($_POST['s1']))
 { 
 $Sname = $_POST['sname'];

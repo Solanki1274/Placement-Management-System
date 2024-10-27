@@ -1,39 +1,45 @@
 <?php
 session_start();
-$connect = mysql_connect("localhost", "harsh", "harsh2005"); // Establishing Connection with Server
-mysql_select_db("placement"); // Selecting Database from Server
+$connect = new mysqli("localhost", "harsh", "harsh2005", "placement"); // Establishing Connection with Server and Database
 
-	$Username = $_SESSION['pusername'];
-	$Password = $_POST['Password'];
-	$repassword = $_POST['repassword'];
-	$cur = $_POST['curpassword'];
-	if($Password && $repassword && $cur) 
-	{
-		if($Password == $repassword)
-		{
-			$sql = mysql_query("SELECT * FROM `placement`.`plogin` WHERE `Username`='$Username'");
-			if(mysql_num_rows($sql) == 1)
-			{
-				$row = mysql_fetch_assoc($sql);
-				$dbpassword = $row['Password'];
-			    
-				if($cur == $dbpassword)
-				{
-					if($query = mysql_query("UPDATE `placement`.`plogin` SET `Password` = '$Password' WHERE `plogin`.`Username` = '$Username'"))
-					{
-						echo "<center>Password Changed Successfully</center>";
-					} else {
-						echo "<center>Can't Be Changed! Try Again</center>";
-					}
-				} else {
-					die("<center>Error! Please Check ur Password</center>");
-				}
-			} else {
-				die("<center>Username not Found</center>");
-			}
-		} else{
-			die("<center>Passwords Donot Match</center>");
-		}
-	} else {
-		die ("<center>Enter All Fields</center>");
-	}
+// Check connection
+if ($connect->connect_error) {
+    die("Connection failed: " . $connect->connect_error);
+}
+
+$Username = $_SESSION['pusername'];
+$Password = $_POST['Password'];
+$repassword = $_POST['repassword'];
+$cur = $_POST['curpassword'];
+
+if ($Password && $repassword && $cur) {
+    if ($Password == $repassword) {
+        $sql = $connect->query("SELECT * FROM `plogin` WHERE `Username`='$Username'");
+        
+        if ($sql->num_rows == 1) {
+            $row = $sql->fetch_assoc();
+            $dbpassword = $row['Password'];
+            
+            if ($cur == $dbpassword) {
+                $query = $connect->query("UPDATE `plogin` SET `Password` = '$Password' WHERE `Username` = '$Username'");
+                
+                if ($query) {
+                    echo "<center>Password Changed Successfully</center>";
+                } else {
+                    echo "<center>Can't Be Changed! Try Again</center>";
+                }
+            } else {
+                die("<center>Error! Please Check your Current Password</center>");
+            }
+        } else {
+            die("<center>Username not Found</center>");
+        }
+    } else {
+        die("<center>Passwords Do Not Match</center>");
+    }
+} else {
+    die("<center>Enter All Fields</center>");
+}
+
+$connect->close(); // Close the database connection
+?>
