@@ -61,7 +61,7 @@ if (isset($_SESSION['pusername'])) {
                         <tbody>
                         <?php
                         $num_rec_per_page = 2;
-                        $link = mysqli_connect('localhost', 'harsh', 'harsh2005', 'details');
+                        $link = mysqli_connect('localhost', 'harsh', 'harsh2005', 'placement');
 
                         if (!$link) {
                             die("Connection failed: " . mysqli_connect_error());
@@ -103,7 +103,7 @@ if (isset($_SESSION['pusername'])) {
         <div class="pagination-wrap">
             <ul class="pagination">
                 <?php
-                $link = mysqli_connect('localhost', 'harsh', 'harsh2005', 'details');
+                $link = mysqli_connect('localhost', 'harsh', 'harsh2005', 'placement');
 
                 if (!$link) {
                     die("Connection failed: " . mysqli_connect_error());

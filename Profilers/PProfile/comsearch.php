@@ -10,6 +10,107 @@
    
 ?>
 <!DOCTYPE html>
+<style>
+  /* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Form Container */
+.templatemo-login-form {
+    max-width: 600px; /* Limit the width */
+    margin: 50px auto; /* Center the form */
+    background: white; /* White background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 30px; /* Padding around the form */
+}
+
+/* Input Styles */
+.form-control {
+    width: 100%; /* Full width */
+    padding: 12px; /* Padding inside the input */
+    margin: 10px 0; /* Space between inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners */
+    transition: border-color 0.3s; /* Transition effect for focus */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button Styles */
+.templatemo-blue-button, .templatemo-white-button {
+    padding: 10px 15px; /* Padding for buttons */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Font size for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover effect */
+}
+
+.templatemo-blue-button {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+}
+
+.templatemo-blue-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.templatemo-white-button {
+    background-color: white; /* White background */
+    color: #007bff; /* Blue text */
+    border: 1px solid #007bff; /* Blue border */
+}
+
+.templatemo-white-button:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* White text */
+}
+
+/* Footer Styles */
+footer {
+    padding: 15px; /* Padding around footer */
+    text-align: center; /* Centered text */
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Fixed height for footer */
+}
+
+footer a {
+    color: white; /* White links */
+    text-decoration: underline; /* Underlined links */
+}
+
+footer a:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .templatemo-login-form {
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    .form-control {
+        font-size: 14px; /* Smaller font size */
+    }
+
+    .templatemo-blue-button, .templatemo-white-button {
+        font-size: 14px; /* Smaller button font size */
+    }
+}
+
+  </style>
 <html lang="en">
  
             

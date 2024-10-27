@@ -149,14 +149,14 @@
 				  </div>
 				  <br>				  
               <div class="form-group text-right">
-                <button type="submit"  name="submit" class="templatemo-blue-button">submit</button>
+                <button type="submit"  name="submit" class="templatemo-blue-button" Onclick="update.php">submit</button>
                 <button type="reset" class="templatemo-white-button">Reset</button>
               </div>
             </form>
           </div>
           <footer class="text-right">
-             <p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+             <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
             </p>
           </footer>
         </div>
