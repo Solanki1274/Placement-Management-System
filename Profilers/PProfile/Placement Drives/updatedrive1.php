@@ -12,6 +12,7 @@ if (!$connect) {
 }
 
 $message = ""; // Variable to hold success or failure message
+$success = false; // Flag to track success status
 
 if (isset($_POST['submit'])) {
     $usn = mysqli_real_escape_string($connect, $_POST['usn']);
@@ -34,13 +35,14 @@ if (isset($_POST['submit'])) {
                   VALUES ('$usn', '$name', '$comname', '$date', '$attend', '$wt', '$gd', '$tech', '$placed')";
 
         if (mysqli_query($connect, $query)) {
-            $message = "<center>Data Inserted successfully...!!</center>";
+            $message = "Data Inserted successfully...!!";
+            $success = true; // Set success flag
         } else {
-            $message = "<center>FAILED: " . mysqli_error($connect) . "</center>";
+            $message = "FAILED: " . mysqli_error($connect);
         }
     } else {
         // USN does not exist
-        $message = "<center>FAILED: The USN '$usn' does not exist in the basicdetails table.</center>";
+        $message = "FAILED: The USN '$usn' does not exist in the basicdetails table.";
     }
 }
 
@@ -123,6 +125,14 @@ mysqli_close($connect); // Close the connection
             font-weight: bold;
         }
     </style>
+    <script>
+        // JavaScript function to display alert message if data is successfully inserted
+        window.onload = function() {
+            <?php if ($success): ?>
+                alert("<?php echo $message; ?>");
+            <?php endif; ?>
+        };
+    </script>
 </head>
 <body>
     <div class="templatemo-flex-row">
@@ -201,7 +211,7 @@ mysqli_close($connect); // Close the connection
                                     <option value="0">N</option>
                                 </select>
                             </div>
-                            
+
                             <div class="col-lg-6 col-md-6 form-group">
                                 <label for="Technical">Technical</label>
                                 <select name="Tech" class="form-control" required>

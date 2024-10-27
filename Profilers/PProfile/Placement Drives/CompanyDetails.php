@@ -128,6 +128,12 @@ if (isset($_POST['submit'])) {
                             <tbody>
                                 <?php
                                 $num_rec_per_page = 15;
+
+                                // Get the current page number from the URL, default to 1
+                                $currentpage = (isset($_GET['page']) ? $_GET['page'] : 1);
+                                $start_from = ($currentpage - 1) * $num_rec_per_page; // Calculate the starting record for the LIMIT clause
+
+                                // Fetch records with pagination
                                 $sql = "SELECT * FROM addpdrive ORDER BY Date DESC LIMIT $start_from, $num_rec_per_page"; 
                                 $rs_result = mysqli_query($connect, $sql);
 
@@ -153,84 +159,45 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <div class="pagination-wrap">
-                <ul class="pagination">
-                    <?php 
-                    $sql = "SELECT * FROM addpdrive ORDER BY Date DESC"; 
-                    $rs_result = mysqli_query($connect, $sql);
-                    $total_records = mysqli_num_rows($rs_result);  
-                    $totalpage = ceil($total_records / $num_rec_per_page); 
+            <div class="pagination">
+                <?php
+                // Count total number of records
+                $result = mysqli_query($connect, "SELECT COUNT(*) FROM addpdrive");
+                $row = mysqli_fetch_row($result);
+                $total_records = $row[0];
 
-                    $currentpage = (isset($_GET['page']) ? $_GET['page'] : 1);
-                    if ($currentpage > 1) {
-                        echo '<li><a href="manage-drives.php?page=' . ($currentpage - 1) . '">&laquo;</a></li>';
-                    }
+                // Calculate total pages
+                $total_pages = ceil($total_records / $num_rec_per_page);
 
-                    for ($i = 1; $i <= $totalpage; $i++) {
-                        echo '<li><a href="manage-drives.php?page=' . $i . '">' . $i . '</a></li>';
-                    }
-
-                    if ($currentpage < $totalpage) {
-                        echo '<li><a href="manage-drives.php?page=' . ($currentpage + 1) . '">&raquo;</a></li>';
-                    }
-                    ?>
-                </ul>
+                // Display pagination links
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    echo "<a href='CompanyDetails.php?page=" . $i . "'>" . $i . "</a> ";
+                }
+                ?>
             </div>
-        </div>
+
+            <!-- <div class="templatemo-content-widget no-padding">
+                <h2>Add Placement Drive</h2>
+                <form action="" method="POST">
+                    <input type="text" name="compny" placeholder="Company Name" required>
+                    <input type="date" name="date" placeholder="Date" required>
+                    <input type="text" name="campool" placeholder="C/P" required>
+                    <input type="text" name="pcv" placeholder="PVenue" required>
+                    <input type="text" name="sslc" placeholder="SSLC" required>
+                    <input type="text" name="puagg" placeholder="PU/Dip" required>
+                    <input type="text" name="beagg" placeholder="BE" required>
+                    <input type="text" name="curback" placeholder="Backlogs" required>
+                    <input type="text" name="hob" placeholder="History of Backlogs" required>
+                    <input type="text" name="break" placeholder="Detain Years" required>
+                    <input type="text" name="odetails" placeholder="Others Details" required>
+                    <input type="submit" name="submit" value="Add Drive">
+                </form>
+            </div> -->
+
+        </div> 
     </div>
 
-    <div class="templatemo-content-container">
-        <h1>Add Placement Drive</h1>
-        <form action="" method="post" class="templatemo-form">
-            <div class="form-group">
-                <label for="compny">Company Name</label>
-                <input type="text" name="compny" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="date">Date</label>
-                <input type="date" name="date" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="campool">C/P</label>
-                <input type="text" name="campool" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="pcv">PVenue</label>
-                <input type="text" name="pcv" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="sslc">SSLC</label>
-                <input type="text" name="sslc" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="puagg">PU/Dip</label>
-                <input type="text" name="puagg" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="beagg">BE</label>
-                <input type="text" name="beagg" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="curback">Backlogs</label>
-                <input type="text" name="curback" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="hob">History of Backlogs</label>
-                <input type="text" name="hob" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="break">Detain Years</label>
-                <input type="text" name="break" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="odetails">Others Details</label>
-                <input type="text" name="odetails" class="form-control">
-            </div>
-            <input type="submit" name="submit" class="btn btn-primary" value="Add Drive">
-        </form>
-    </div>
-    
-    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/templatemo-script.js"></script>
 </body>
