@@ -115,15 +115,15 @@
 				</div>
 				<div class="col-md-3 get_in_touch ftr">
 					<h3>GET IN TOUCH</h3>
-					<p>NH4, Herur</p>
-					<p>Gubbi, Tumkur, India</p>
+					<p>NH48, Matar</p>
+					<p>sasoon Dock, Mumbai, India</p>
 					<p>08138-223818/223365</p>
-					<a href="mailto:cittumkur@rediffmail.com">cittumkur@rediffmail.com</a>
+					<a href="mailto:solankiatulr2011@gmail.com">solankiatulr2011@gmail.com</a>
 				</div>
 				<div class="col-md-3 ftr-logo">
 					<a href="index.php"><img src="images/wds.png" alt=""/></a>
-							<p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+							<p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
 			  </p>
 				</div>
 				</div>

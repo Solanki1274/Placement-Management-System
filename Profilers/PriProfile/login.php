@@ -151,23 +151,55 @@
                   <div class="media-body">
                     <h2 class="media-heading text-uppercase">Drive Results</h2>
                     <p>Latest Drive Result Overview</p> 
-                    <?php			
-mysql_connect('localhost','root','');
-mysql_select_db('details');
-$RESULT=mysql_query("SELECT DISTINCT count(CompanyName) from addpdrive where PVenue LIKE '%CIT%' AND YEAR(Date)=YEAR(NOW())");
-$data=mysql_fetch_assoc($RESULT);
-echo "<br><br><h3>Companies In Our Campus In This Year&nbsp:&nbsp";
-echo $data['count(CompanyName)'];
-$RESULT=mysql_query("SELECT count(Attendence) from updatedrive where Attendence=1 AND YEAR(Date)=YEAR(NOW())");
-$data=mysql_fetch_assoc($RESULT);
-echo "<br><BR>Number of Students Attended In This Year&nbsp:&nbsp";
-echo $data['count(Attendence)'];
-$RESULT=mysql_query("SELECT count(Placed) from updatedrive where Placed=1 AND YEAR(Date)=YEAR(NOW())");
-$data=mysql_fetch_assoc($RESULT);
-echo "<BR><br>Number of Students Placed In This Year&nbsp:&nbsp";
-echo $data['count(Placed)'];
+      <?php			
+
+// Database connection
+$servername = "localhost";
+$username = "harsh";
+$password = "harsh2005";
+$dbname = "placement";
+$connect = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($connect->connect_error) {
+    die("Connection failed: " . $connect->connect_error);
+}
+
+// Define a function to fetch and display counts based on specific criteria
+function fetchCount($conn, $query) {
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    $stmt->close();
+    return $data;
+}
+
+// Query and display results
+echo "<br><br><h3>";
+
+// 1. Count of distinct companies on campus this year
+$query1 = "SELECT COUNT(DISTINCT CompanyName) as count FROM addpdrive WHERE PVenue LIKE '%CIT%' AND YEAR(Date) = YEAR(NOW())";
+$data1 = fetchCount($connect, $query1);
+echo "Companies In Our Campus In This Year&nbsp:&nbsp" . $data1['count'];
+
+// 2. Count of students who attended this year
+$query2 = "SELECT COUNT(Attendence) as count FROM updatedrive WHERE Attendence = 1 AND YEAR(Date) = YEAR(NOW())";
+$data2 = fetchCount($connect, $query2);
+echo "<br><br>Number of Students Attended In This Year&nbsp:&nbsp" . $data2['count'];
+
+// 3. Count of students placed this year
+$query3 = "SELECT COUNT(Placed) as count FROM updatedrive WHERE Placed = 1 AND YEAR(Date) = YEAR(NOW())";
+$data3 = fetchCount($connect, $query3);
+echo "<br><br>Number of Students Placed In This Year&nbsp:&nbsp" . $data3['count'];
+
 echo "</h3>";
-?> 
+
+// Close connection
+$connect->close();
+?>
+
+ 
                   </div>
                 </div>                
               </div>            
@@ -189,33 +221,33 @@ echo "</h3>";
                     <tbody>
                       <tr>
                         <td>1.</td>
-                        <td>John</td>
-                        <td>Smith</td>
-                        <td>@jS</td>
+                        <td>harsh</td>
+                        <td>Solanki</td>
+                        <td>@hs</td>
                       </tr>
                       <tr>
                         <td>2.</td>
-                        <td>Bill</td>
-                        <td>Jones</td>
-                        <td>@bJ</td>
+                        <td>Rolex</td>
+                        <td>Daas</td>
+                        <td>@rd</td>
                       </tr>
                       <tr>
                         <td>3.</td>
-                        <td>Mary</td>
-                        <td>James</td>
-                        <td>@mJ</td>
+                        <td>Harold</td>
+                        <td>Das</td>
+                        <td>@ld</td>
                       </tr>
                       <tr>
                         <td>4.</td>
-                        <td>Steve</td>
-                        <td>Bride</td>
-                        <td>@sB</td>
+                        <td>Leo</td>
+                        <td>Das</td>
+                        <td>@ld</td>
                       </tr>
                       <tr>
                         <td>5.</td>
-                        <td>Paul</td>
-                        <td>Richard</td>
-                        <td>@pR</td>
+                        <td>Antony</td>
+                        <td>Das</td>
+                        <td>@ad</td>
                       </tr>                    
                     </tbody>
                   </table>    
@@ -225,8 +257,8 @@ echo "</h3>";
           </div> <!-- Second row ends -->
     
           <footer class="text-right">
-            <p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+            <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
             </p>
           </footer>       
         </div>

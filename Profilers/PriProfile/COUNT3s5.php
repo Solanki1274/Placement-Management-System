@@ -56,39 +56,79 @@
 				     <td><a  class="white-text templatemo-sort-by">Detain Years </a></td> 
 				  </thead>
 			   </tr>			   
- <?php		
-mysql_connect('localhost','root','');
-mysql_select_db('details');
-if(isset($_POST['s5']))
-{ 
-$Csslc = $_POST['csslc'];
-$RESULT = mysql_query("SELECT count(*) FROM basicdetails WHERE `Approve`='1' AND SSLC>='$Csslc'");
-$data = mysql_fetch_assoc($RESULT);
-echo "<br><h3>Students Scored Above '$Csslc' in SSLC&nbsp:&nbsp";
-echo $data['count(*)'];
-echo "</h3>";
-$sql = mysql_query("SELECT * FROM basicdetails WHERE `Approve`='1' AND SSLC>='$Csslc'");
-while($row = mysql_fetch_assoc($sql))
-{
-	            print "<tr>"; 	
-    echo '<td>'.$row['FirstName'].'</td>';	
-	echo '<td>'.$row['LastName'].'</td>';		
-	echo '<td>'.$row['USN'].'</td>';	
-	echo '<td>'.$row['Mobile'].'</td>';	
-    echo '<td>'.$row['Email'].'</td>';		
-	echo '<td>'.$row['DOB'].'</td>';	
-	echo '<td>'.$row['Sem'].'</td>';	 
-	echo '<td>'.$row['Branch'].'</td>';		
-	echo '<td>'.$row['SSLC'].'</td>';	
-	echo '<td>'.$row['PU/Dip'].'</td>';	
-	echo '<td>'.$row['BE'].'</td>';	
-	echo '<td>'.$row['Backlogs'].'</td>';	
-	echo '<td>'.$row['HofBacklogs'].'</td>';	
-	echo '<td>'.$row['DetainYears'].'</td>';
-print "</tr>"; 
+         <?php
+// Database connection
+$connection = mysqli_connect('localhost', 'harsh', 'harsh2005', 'placement');
+
+// Check connection
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
 }
+
+if (isset($_POST['s5'])) { 
+    // Sanitize user input
+    $Csslc = mysqli_real_escape_string($connection, $_POST['csslc']);
+
+    // Query to count the number of students who scored above the specified SSLC percentage
+    $result = mysqli_query($connection, "SELECT COUNT(*) AS total_students FROM basicdetails WHERE `Approve`='1' AND SSLC >= '$Csslc'");
+    
+    if ($result) {
+        $data = mysqli_fetch_assoc($result);
+        echo "<br><h3>Students Scored Above '$Csslc' in SSLC&nbsp:&nbsp" . $data['total_students'] . "</h3>"; 
+    } else {
+        echo "Error counting students: " . mysqli_error($connection);
+    }
+
+    // Query to get the details of students who scored above the specified SSLC percentage
+    $sql = mysqli_query($connection, "SELECT * FROM basicdetails WHERE `Approve`='1' AND SSLC >= '$Csslc'");
+    
+    if ($sql) {
+        echo '<table>'; // Start the table
+        echo '<tr>
+                <th>Branch</th>
+                <th>Semester</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>USN</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>SSLC Percentage</th>
+                <th>PU/Diploma Percentage</th>
+                <th>BE Aggregate</th>
+                <th>Current Backlogs</th>
+                <th>History of Backlogs</th>
+                <th>Detain Years</th>
+              </tr>'; // Table headers
+
+        while ($row = mysqli_fetch_assoc($sql)) {
+            echo "<tr>"; 
+            echo '<td>' . htmlspecialchars($row['Branch']) . '</td>';			
+            echo '<td>' . htmlspecialchars($row['Sem']) . '</td>';			
+            echo '<td>' . htmlspecialchars($row['FirstName']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['LastName']) . '</td>';		
+            echo '<td>' . htmlspecialchars($row['USN']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['Mobile']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['Email']) . '</td>';		
+            echo '<td>' . htmlspecialchars($row['DOB']) . '</td>';			 			
+            echo '<td>' . htmlspecialchars($row['SSLC']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['PU/Dip']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['BE']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['Backlogs']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['HofBacklogs']) . '</td>';	
+            echo '<td>' . htmlspecialchars($row['DetainYears']) . '</td>';
+            echo "</tr>"; 
+        }
+        echo '</table>'; // End the table
+    } else {
+        echo "Error fetching students: " . mysqli_error($connection);
+    }
 }
+
+// Close the database connection
+mysqli_close($connection);
 ?>
+
      </tbody>
               </table>  
 			  </div>

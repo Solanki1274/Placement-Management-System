@@ -1,18 +1,42 @@
 <?php
-	session_start();
-	
-	$USN1 = $_POST['USN'];
-	$password = $_POST['PASSWORD'];
-	$confirm = $_POST['repassword'];
-	
-	$connect = mysql_connect("localhost", "root", ""); // Establishing Connection with Server
-    mysql_select_db("placement") or die("Cant Connect to database"); // Selecting Database from Server
-	
-	if($password == $confirm) {
-		if($sql = mysql_query("UPDATE `placement`.`prilogin` SET `PASSWORD` ='$password' WHERE `prilogin`.`Username` = '$USN1'"));
-		echo "<center>Password Reset Complete</center>";
-		echo "<center> <a href='index.php'>Go Back</a></center>";
-		session_unset();
-	} else
-	echo "Update Failed";
+session_start();
+
+$servername = "localhost";
+$username = "harsh";
+$password = "harsh2005";
+$dbname = "placement";
+
+// Establish a new connection with the server
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get form data securely
+$USN1 = $conn->real_escape_string($_POST['USN']);
+$password = $conn->real_escape_string($_POST['PASSWORD']);
+$confirm = $conn->real_escape_string($_POST['repassword']);
+
+// Check if passwords match
+if ($password === $confirm) {
+    // Hash the password for security
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Prepare and execute the SQL update query
+    $sql = "UPDATE prilogin SET PASSWORD = '$hashedPassword' WHERE Username = '$USN1'";
+    if ($conn->query($sql) === TRUE) {
+        echo "<center>Password Reset Complete</center>";
+        echo "<center><a href='index.php'>Go Back</a></center>";
+        session_unset();
+    } else {
+        echo "<center>Update Failed: " . $conn->error . "</center>";
+    }
+} else {
+    echo "<center>Passwords do not match. Please try again.</center>";
+}
+
+// Close the connection
+$conn->close();
 ?>

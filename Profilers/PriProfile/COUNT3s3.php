@@ -56,47 +56,71 @@
 				     <td><a  class="white-text templatemo-sort-by">Detain Years </a></td> 
 				  </thead>
 			   </tr>			   
- <?php		
-mysql_connect('localhost','root','');
-mysql_select_db('details');
-if(isset($_POST['s3']))
-{ 
-$Csem = $_POST['csem'];
-$RESULT = mysql_query("SELECT count(*) FROM basicdetails WHERE `Approve`='1' AND Sem='$Csem'");
-$data = mysql_fetch_assoc($RESULT);
-echo "<br><h3>Students in Semister '$Csem'&nbsp:&nbsp";
-echo $data['count(*)'];
-echo "</h3>";
-$sql = mysql_query("SELECT * FROM basicdetails WHERE `Approve`='1' AND Sem='$Csem' ORDER BY Branch");
-while($row = mysql_fetch_assoc($sql))
-{
-	            print "<tr>"; 	
-	echo '<td>'.$row['Sem'].'</td>';	
-    echo '<td>'.$row['Branch'].'</td>';		
-    echo '<td>'.$row['FirstName'].'</td>';	
-	echo '<td>'.$row['LastName'].'</td>';		
-	echo '<td>'.$row['USN'].'</td>';	
-	echo '<td>'.$row['Mobile'].'</td>';	
-    echo '<td>'.$row['Email'].'</td>';		
-	echo '<td>'.$row['DOB'].'</td>';			 	
-	echo '<td>'.$row['SSLC'].'</td>';	
-	echo '<td>'.$row['PU/Dip'].'</td>';	
-	echo '<td>'.$row['BE'].'</td>';	
-	echo '<td>'.$row['Backlogs'].'</td>';	
-	echo '<td>'.$row['HofBacklogs'].'</td>';	
-	echo '<td>'.$row['DetainYears'].'</td>';
-print "</tr>"; 
+ 		
+<?php
+// Database connection
+$connection = mysqli_connect('localhost', 'harsh', 'harsh2005', 'placement');
+
+// Check connection
+if (!$connection) {
+    die("Connection failed: " . mysqli_connect_error());
 }
+
+if (isset($_POST['s3'])) { 
+    $Csem = mysqli_real_escape_string($connection, $_POST['csem']);
+    
+    // Query to count the students
+    $result = mysqli_query($connection, "SELECT COUNT(*) AS total_students FROM basicdetails WHERE `Approve`='1' AND Sem='$Csem'");
+    
+    // Fetch the count result
+    if ($result) {
+        $data = mysqli_fetch_assoc($result);
+        echo "<br><h3>Students in Semester '$Csem'&nbsp:&nbsp" . $data['total_students'] . "</h3>";
+    } else {
+        echo "Error: " . mysqli_error($connection);
+    }
+
+    // Query to get the details of students
+    $sql = mysqli_query($connection, "SELECT * FROM basicdetails WHERE `Approve`='1' AND Sem='$Csem' ORDER BY Branch");
+    
+    // Check if the second query was successful
+    if ($sql) {
+        while ($row = mysqli_fetch_assoc($sql)) {
+            // Display each student's details
+            echo "<div>";
+            echo "First Name: " . htmlspecialchars($row['FirstName']) . "<br>";
+            echo "Last Name: " . htmlspecialchars($row['LastName']) . "<br>";
+            echo "USN: " . htmlspecialchars($row['USN']) . "<br>";
+            echo "Mobile: " . htmlspecialchars($row['Mobile']) . "<br>";
+            echo "Email: " . htmlspecialchars($row['Email']) . "<br>";
+            echo "DOB: " . htmlspecialchars($row['DOB']) . "<br>";
+            echo "Semester: " . htmlspecialchars($row['Sem']) . "<br>";
+            echo "Branch: " . htmlspecialchars($row['Branch']) . "<br>";
+            echo "SSLC Percentage: " . htmlspecialchars($row['SSLC']) . "<br>";
+            echo "PU/Diploma Percentage: " . htmlspecialchars($row['PU/Dip']) . "<br>";
+            echo "BE Aggregate: " . htmlspecialchars($row['BE']) . "<br>";
+            echo "Current Backlogs: " . htmlspecialchars($row['Backlogs']) . "<br>";
+            echo "History of Backlogs: " . htmlspecialchars($row['HofBacklogs']) . "<br>";
+            echo "Detain Years: " . htmlspecialchars($row['DetainYears']) . "<br>";
+            echo "</div><hr>";
+        }
+    } else {
+        echo "Error: " . mysqli_error($connection);
+    }
 }
-?> 
+
+// Close the connection
+mysqli_close($connection);
+?>
+
      </tbody>
               </table>  
 			  </div>
 			  </div>
 			  </div>
  <footer class="text-right">
-            <p>Copyright &copy; 2001-2015 CIT-PMS
-            |  Developed by <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a></p>
+            <p>Copyright &copy; 2024 Hmc-PMS
+            |  Developed by <a href="#" target="_parent">Hmc FutureTechnologies</a></p>
           </footer>         
         </div>
       </div>

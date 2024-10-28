@@ -1,47 +1,38 @@
 <?php
- 
-  $subject = $_POST['Subject'];
-  $message = $_POST['Message'];
-  if(isset($_POST['submit']))
-  {
-	  $connect = mysql_connect("localhost","root","") or die("Couldn't Connect");
-		mysql_select_db("comm") or die("Cant find DB");
-		
-		if($query = mysql_query("INSERT into `comm`.`prim`(`Subject`,`Message`,`Images`) VALUES('$subject','$message','$images')"))
-			echo "Message has been Posted";
-		else
-			echo "Message Posting Unsuccessfull! Try Again";
-  }
- 
-  
-  /*mysql_connect("localhost","root","");
-  mysql_select_db("comm");
-  
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+    // Get form data
+    $subject = $_POST['Subject'];
+    $message = $_POST['Message'];
+    $images = $_POST['Images']; // Assuming you're handling images as well
 
-  $sub = $_POST['Subject'];
-  $msg = $_POST['Message'];
-  
-      if(!$insert = mysql_query("INSERT INTO `comm`.`prim` (`Id`, `Subject`, `Message`) VALUES (NULL, \'$sub\', \'$msg\')"))
-        echo "Problem Uploading Data";
-       else
-       echo"Message Posted Successfully";
+    // Database connection parameters
+    $servername = "localhost";
+    $username = "harsh";
+    $password = "harsh2005";
+    $dbname = "placement";
 
-  /*$connect = mysql_connect("localhost","root","") or die("Couldn't Connect");
-		mysql_select_db("comm") or die("Cant find DB");
-    if(isset($_POST['submit'])){
-  $sub = $_POST['Subject'];
-  $msg = $_POST['Message'];
-  $name = $_FILES['image']['name'];
-  $tmp_name = $FILES['files']['tmp_name'];
-  $location = 'Uploads/';
-  $target = 'Uploads/'.$name;
-  
-  if(move_uploaded_file($tmp_name,$location.$name)){
-    echo "File Uploaded";
-    $nam = $_POST['nam'];
-    $query = mysql_query("INSERT INTO prim(Id,Subject,Message,Images_loc,Images_Name) VALUES ('','$sub','$msg','".$target."','$nam')");
-  } else echo "<center>Failed</center>";
-  }*/
-   ?>
-   
-   
+    // Create a connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Prepare and bind
+    $stmt = $conn->prepare("INSERT INTO prim (Subject, Message, Images) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $subject, $message, $images); // 'sss' indicates three string parameters
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "Message has been posted";
+    } else {
+        echo "Message posting unsuccessful! Try again: " . $stmt->error;
+    }
+
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
+}
+?>
