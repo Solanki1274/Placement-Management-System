@@ -30,7 +30,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<!-- <style>
+  body {
+    background-image: url("./images/bg.jpg");
+    background-size: cover; /* This makes the background image cover the entire body */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+}
 
+</style> -->
   </head>
   <body>  
     <!-- Left column -->
@@ -268,7 +276,7 @@ $connect->close();
     <!-- JS -->
     <script src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
     <script src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
-    <script src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
+    <script src="https://www.google.com/jsapi"></script> Google Chart
 
     <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
 

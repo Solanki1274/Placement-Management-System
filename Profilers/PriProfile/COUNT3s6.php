@@ -58,7 +58,7 @@
 			   </tr>			   
          <?php
 // Database connection
-$connection = mysqli_connect('localhost', 'root', '', 'details');
+$connection = mysqli_connect('localhost', 'harsh', 'harsh2005', 'placement');
 
 // Check connection
 if (!$connection) {
