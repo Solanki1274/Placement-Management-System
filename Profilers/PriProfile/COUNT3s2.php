@@ -27,11 +27,62 @@ if (isset($_POST['s2'])) {
     <link rel="icon" href="favicon.ico" type="image/icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <title>Queries</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <title>Student Queries</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-style.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('../images/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+        .templatemo-content-container {
+            background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            text-align: center;
+            color: #007bff; /* Bootstrap primary color */
+            margin-bottom: 20px;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        td {
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+            font-size: 16px;
+        }
+        td:first-child {
+            font-weight: 500; /* Bold for field labels */
+            color: #555;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="bg">
@@ -41,20 +92,20 @@ if (isset($_POST['s2'])) {
                 <h3>Details of Student '<?php echo htmlspecialchars($Susn); ?>'</h3>
                 <center>
                     <table>
-                        <tr><td>First Name: <?php echo htmlspecialchars($studentDetails['FirstName']); ?></td></tr>
-                        <tr><td>Last Name: <?php echo htmlspecialchars($studentDetails['LastName']); ?></td></tr>
-                        <tr><td>USN: <?php echo htmlspecialchars($studentDetails['USN']); ?></td></tr>
-                        <tr><td>Mobile: <?php echo htmlspecialchars($studentDetails['Mobile']); ?></td></tr>
-                        <tr><td>Email: <?php echo htmlspecialchars($studentDetails['Email']); ?></td></tr>
-                        <tr><td>DOB: <?php echo htmlspecialchars($studentDetails['DOB']); ?></td></tr>
-                        <tr><td>Semester: <?php echo htmlspecialchars($studentDetails['Sem']); ?></td></tr>
-                        <tr><td>Branch: <?php echo htmlspecialchars($studentDetails['Branch']); ?></td></tr>
-                        <tr><td>SSLC Percentage: <?php echo htmlspecialchars($studentDetails['SSLC']); ?></td></tr>
-                        <tr><td>PU/Diploma Percentage: <?php echo htmlspecialchars($studentDetails['PU/Dip']); ?></td></tr>
-                        <tr><td>BE Aggregate: <?php echo htmlspecialchars($studentDetails['BE']); ?></td></tr>
-                        <tr><td>Current Backlogs: <?php echo htmlspecialchars($studentDetails['Backlogs']); ?></td></tr>
-                        <tr><td>History of Backlogs: <?php echo htmlspecialchars($studentDetails['HofBacklogs']); ?></td></tr>
-                        <tr><td>Detain Years: <?php echo htmlspecialchars($studentDetails['DetainYears']); ?></td></tr>
+                        <tr><td>First Name:</td><td><?php echo htmlspecialchars($studentDetails['FirstName']); ?></td></tr>
+                        <tr><td>Last Name:</td><td><?php echo htmlspecialchars($studentDetails['LastName']); ?></td></tr>
+                        <tr><td>USN:</td><td><?php echo htmlspecialchars($studentDetails['USN']); ?></td></tr>
+                        <tr><td>Mobile:</td><td><?php echo htmlspecialchars($studentDetails['Mobile']); ?></td></tr>
+                        <tr><td>Email:</td><td><?php echo htmlspecialchars($studentDetails['Email']); ?></td></tr>
+                        <tr><td>DOB:</td><td><?php echo htmlspecialchars($studentDetails['DOB']); ?></td></tr>
+                        <tr><td>Semester:</td><td><?php echo htmlspecialchars($studentDetails['Sem']); ?></td></tr>
+                        <tr><td>Branch:</td><td><?php echo htmlspecialchars($studentDetails['Branch']); ?></td></tr>
+                        <tr><td>SSLC Percentage:</td><td><?php echo htmlspecialchars($studentDetails['SSLC']); ?></td></tr>
+                        <tr><td>PU/Diploma Percentage:</td><td><?php echo htmlspecialchars($studentDetails['PU/Dip']); ?></td></tr>
+                        <tr><td>BE Aggregate:</td><td><?php echo htmlspecialchars($studentDetails['BE']); ?></td></tr>
+                        <tr><td>Current Backlogs:</td><td><?php echo htmlspecialchars($studentDetails['Backlogs']); ?></td></tr>
+                        <tr><td>History of Backlogs:</td><td><?php echo htmlspecialchars($studentDetails['HofBacklogs']); ?></td></tr>
+                        <tr><td>Detain Years:</td><td><?php echo htmlspecialchars($studentDetails['DetainYears']); ?></td></tr>
                     </table>
                 </center>
             <?php else: ?>
@@ -64,8 +115,8 @@ if (isset($_POST['s2'])) {
     </div>
 </div>
 
-<footer class="text-right">
-    <p>Copyright &copy;2024 Hmc-PMS | Developed by <a href="#" target="_parent">Hmc FutureTechnologies</a></p>
+<footer>
+    <p>Copyright &copy;2024 Hmc-PMS | Developed by <a href="#" target="_parent" style="color: #f8f9fa;">Hmc FutureTechnologies</a></p>
 </footer>
 
 <!-- JS -->
@@ -75,7 +126,7 @@ if (isset($_POST['s2'])) {
     $(document).ready(function(){
         // Content widget with background image
         var imageUrl = $('img.content-bg-img').attr('src');
-        $('.templatemo-content-img-bg').css('background-image', 'url(' + imageUrl + ')');
+        $('.templatemo-content-img-bg').css('background-image', 'url('../images/bg.jpg')');
         $('img.content-bg-img').hide();
     });
 </script>

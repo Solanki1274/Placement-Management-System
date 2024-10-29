@@ -25,30 +25,28 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 // Search functionality
-if (isset($_POST['submit'])) {
-    $branch = $_POST['Branch'];
-    $sslc = $_POST['sslc'];
-    $puaggregate = $_POST['puagg'];  // Correcting variable name to match input name
-    $beaggregate = $_POST['beagg'];
-    $backlogs = $_POST['curback'];
-    $hisofbk = $_POST['hob'];
-    $dety = $_POST['dy'];
+$searchResult = $result; // Default to all results if no search
 
-    // Ensure you bind the correct number of types
+if (isset($_POST['submit'])) {
+    // Only access $_POST variables if they are set
+    $branch = isset($_POST['Branch']) ? $_POST['Branch'] : '';
+    $sslc = isset($_POST['sslc']) ? $_POST['sslc'] : 0;
+    $puaggregate = isset($_POST['puagg']) ? $_POST['puagg'] : 0;  // Default to 0 if not set
+    $beaggregate = isset($_POST['beagg']) ? $_POST['beagg'] : 0;
+    $backlogs = isset($_POST['curback']) ? $_POST['curback'] : 0;
+    $hisofbk = isset($_POST['hob']) ? $_POST['hob'] : 0;
+    $dety = isset($_POST['dy']) ? $_POST['dy'] : 0;
+
+    // Prepare search SQL
     $searchSql = "SELECT * FROM basicdetails WHERE Approve=1 AND Branch=? AND SSLC>=? AND `PU/Dip`>=? AND BE>=? AND Backlogs=? AND HofBacklogs=? AND DetainYears=?";
     $searchStmt = $mysqli->prepare($searchSql);
-
-    // Correct the type specifiers to match the number of variables being bound
     $searchStmt->bind_param("siiiiii", $branch, $sslc, $puaggregate, $beaggregate, $backlogs, $hisofbk, $dety);
     $searchStmt->execute();
     $searchResult = $searchStmt->get_result();
-} else {
-    $searchResult = $result;
-}
+} 
 
 // HTML Structure
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -172,19 +170,10 @@ if (isset($_POST['submit'])) {
 
         <footer class="text-right">
             <p>Copyright &copy; 2024 Hmc-PMS | Developed by
-                <a href="http://znumerique.azurewebsites.net" target="_parent">Hmc FutureTechnologies</a>
+                <a href="#" target="_parent">Hmc FutureTechnologies</a>
             </p>
         </footer>
     </div>
 </div>
-
-<!-- JS -->
-<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="js/templatemo-script.js"></script>
 </body>
 </html>
-
-<?php
-$stmt->close();
-$mysqli->close();
-?>

@@ -7,6 +7,142 @@
 	   header("location: index.php");
   }
 ?>
+<?php
+// Check if session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION["username"])) {
+    header("location: index.php");
+    exit();
+}
+
+// Database connection
+$servername = "localhost"; 
+$username_db = "harsh";
+$password_db = "harsh2005";
+$dbname = "placement";  // Update with your actual database name
+
+$conn = new mysqli($servername, $username_db, $password_db, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// User's username from session
+$username = $_SESSION["username"];
+
+// Fetch the approval status
+$sql = "SELECT Approve FROM slogin WHERE USN = ?";  // Update column name as needed
+$stmt = $conn->prepare($sql);
+
+if ($stmt) {
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Check if the account is approved
+        if ($row["Approve"] != 1) {
+            // User is not approved, show a modal message
+            echo '
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 style="color: red;">Profile Not Approved</h2>
+                    <p>Your profile is not approved yet. Please update your details in the <a href="preferences.php">Preference Tab</a>.</p>
+                    <p>To get verified, ensure that all required information is filled out accurately and submit any necessary documentation.</p>
+                    <p>If you have already submitted your details, please contact the administrator for further assistance.</p>
+                    <button class="close-button" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+            <script>
+                // Function to close the modal
+                function closeModal() {
+                    document.getElementById("modal").style.display = "none";
+                }
+                // Show the modal on page load
+                window.onload = function() {
+                    document.getElementById("modal").style.display = "block";
+                }
+            </script>
+            <style>
+                /* Modal styles */
+                .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgb(0,0,0); /* Fallback color */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+                .modal-content {
+                    background-color: #fefefe;
+                    margin: 15% auto; /* 15% from the top and centered */
+                    padding: 20px;
+                    border: 1px solid #888;
+                    width: 80%; /* Could be more or less, depending on screen size */
+                    text-align: center;
+                }
+                .close {
+                    color: #aaa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+                .close:hover,
+                .close:focus {
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                .close-button {
+                    background-color: #f44336; /* Red background */
+                    color: white; /* White text */
+                    border: none;
+                    padding: 10px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin-top: 10px;
+                    cursor: pointer;
+                }
+                .close-button:hover {
+                    background-color: #d32f2f; /* Darker red on hover */
+                }
+            </style>
+            ';
+        } else {
+            // User is approved, no popup needed
+            echo "<p>Welcome, $username! You can now access your profile.</p>";
+            // Here you can include additional code to show the student's profile or dashboard
+            // For example, include('student_dashboard.php'); or similar
+        }
+
+    } else {
+        echo "<p style='color: red; text-align: center;'>Error: User not found.</p>";
+        exit();
+    }
+
+    $stmt->close();
+} else {
+    echo "<p style='color: red; text-align: center;'>Error: Could not prepare statement.</p>";
+    exit();
+}
+
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -221,8 +357,8 @@
           </div>
           <!-- Second row ends -->
           <footer class="text-right">
-            		<p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+            		<p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
 			  </p>
           </footer>
         </div>

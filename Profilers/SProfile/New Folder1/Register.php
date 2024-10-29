@@ -25,22 +25,23 @@
 	    <![endif]-->
 	</head>
 	<body class="light-gray-bg">
+		
 		<div class="templatemo-content-widget templatemo-login-widget white-bg">
 			<header class="text-center">
 	          <div class="square"></div>
 	          <h1>Student Register</h1>
 	        </header>
-	        <form method="POST" class="templatemo-login-form" action="reg.php" enctype="multipart/form-data">
+	        <form method="POST" class="templatemo-login-form" action="reg.php">
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" name="Fullname" class="form-control" placeholder="FullName" >           
+		              	<input type="text" name="Fullname" class="form-control" placeholder="FullName*" >           
 		          	</div>	
 	        	</div>
 				<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" name="USN" class="form-control" placeholder="USN" >           
+		              	<input type="text" name="USN" class="form-control" placeholder="USN*" >           
 		          	</div>	
 	        	</div>
 	        	<div class="form-group">
@@ -58,13 +59,13 @@
 				<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" name="Email" class="form-control" placeholder="Email" >           
+		              	<input type="text" name="Email" class="form-control" placeholder="Email*" >           
 		          	</div>					
 	        	</div>
 				<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<select type="text" name="Question" class="form-control" placeholder="Security Question" > 
+		              	<select type="text" name="Question" class="form-control" placeholder="Security Question*" > 
 								<option value="What is your nickname?">What is your nickname?</option>
 								<option value="What is your fav spot?">What is your fav spot?</option>
 							<option value="What is your fav dish?">What is your fav dish?</option>
@@ -75,11 +76,12 @@
 						<option value="What is your enemy name?">What is your enemy name?</option>
 						<option value="What is your pet name?">What is your petname?</option>
 					</div>	
+					
 	        	</div>
 				<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" name="Answer" class="form-control" placeholder="Answer" >           
+		              	<input type="text" name="Answer" class="form-control" placeholder="Answer*" >           
 		          	</div>	
 	        	</div>
 				
@@ -89,6 +91,7 @@
 				</div>
 	        </form>
 		</div>
+		
 		<div class="templatemo-content-widget templatemo-login-widget templatemo-register-widget white-bg">
 			<p>Have an Account? <strong><a href="index.php" class="blue-text">Sign in here!</a></strong></p>
 		</div>
@@ -137,18 +140,117 @@
 				</div>
 				<div class="col-md-3 get_in_touch ftr">
 					<h3>GET IN TOUCH</h3>
-					<p>NH4, Herur</p>
-					<p>Gubbi, Tumkur, India</p>
+					<p>NH48, Matar</p>
+					<p>Sasoon Dock, Mumbai, India</p>
 					<p>08138-223818/223365</p>
-					<a href="mailto:cittumkur@rediffmail.com">cittumkur@rediffmail.com</a>
+					<a href="mailto:solankiatulr2011@gmail.com">solankiatulr2011@gmail.com</a>
 				</div>
 				<div class="col-md-3 ftr-logo">
-					<a href="../index.html"><img src="images/wds.png" alt=""/></a>
-					<p>© 2014-2015
-						<a href="http://wafferdevelopers.com/" >Waffer Developers</a>
-					</p>
+					<p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
+				</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
 	</body>
 </html>
+<!--<
+// define variables and set to empty values
+$nameErr = $usnErr = $passErr = $emailerr = $Qerr = $Anserr = "";
+$Name = $USN = $password = $repassword = $Email = $Question = $Answer = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+   if (empty($_POST["Fullname"])) {
+     $nameErr = "Name is required";
+   } else {
+     $Name = test_input($_POST["Fullname"]);
+     // check if name only contains letters and whitespace
+     if (!preg_match("/^[a-zA-Z ]*$/",$Name)) {
+       $nameErr = "Only letters and white space allowed"; 
+     }
+   }
+	
+	if (empty($_POST["USN"])) {
+     $usnErr = "USN is required";
+   } else {
+     $USN = test_input($_POST["USN"]);
+     // check if name only contains letters and whitespace
+     if (!preg_match("/[a-zA-Z0-9]*$/",$USN)) {
+       $nameErr = "Only letters and white space allowed"; 
+     }
+   }
+   
+   if (empty($_POST["password"])) {
+     $passErr = "Password is required";
+   } else {
+     $password = test_input($_POST["password"]);
+     // check if name only contains letters and whitespace
+     }
+   
+   if (empty($_POST["repassword"])) {
+     $passErr = "Feild is required";
+   } else {
+     $repassword = test_input($_POST["repassword"]);
+   }
+   
+   if (empty($_POST["Email"])) {
+     $emailErr = "Email is required";
+   } else {
+     $Email = test_input($_POST["Email"]);
+     // check if e-mail address is well-formed
+     if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+       $emailErr = "Invalid email format"; 
+     }
+   }
+   
+     $Question = ($_POST["Question"]);
+   
+    if (empty($_POST["Answer"])) {
+     $AnsErr = "Answer is required";
+   } else {
+     $Answer = test_input($_POST["Answer"]);
+     // check if name only contains letters and whitespace
+     if (!preg_match("/^[a-zA-Z ]*$/",$Answer)) {
+       $nameErr = "Only letters and white spaces allowed"; 
+     }
+   }
+}
+   
+   function test_input($data) 
+   {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+   }
+   $connect = mysql_connect("localhost", "root", ""); // Establishing Connection with Server
+  		mysql_select_db("placement") or die("Cant Connect to database"); // Selecting Database from Server
+		
+		$check = mysql_query("SELECT * FROM slogin WHERE USN='".$USN."'") or die("Check Query");
+ 		if(mysql_num_rows($check) == 0) 
+ 		{
+  			if($repassword == $password)
+  			{
+    			if($query = mysql_query("INSERT INTO slogin(Name,USN,PASSWORD,Email,Question,Answer) VALUES ('$Name','$USN','$password','$Email','$Question','$Answer')"))
+    			{
+					$message = " You have registered successfully...!!";
+  					echo "<script type='text/javascript'>alert('$message');</script>";
+                    //echo "<center> You have registered successfully...!! Go back to  </center>";
+					//echo "<center><a href='index.php'>Login here</a> </center>";				   
+    			}
+  			}
+   			else
+    		{
+      			// echo "<center>Your Password don't Match</center>";
+				$message = "Your Password don't Match";
+  				echo "<script type='text/javascript'>alert('$message');</script>";
+    		}
+   		}
+   		else
+   		{
+       		//echo "<center>This USN already exists</center>";
+			$message = "This USN already exists/Dont Leave any Field Blank";
+  			echo "<script type='text/javascript'>alert('$message');</script>";
+			    
+		}-->

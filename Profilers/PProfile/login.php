@@ -1,12 +1,118 @@
 <?php
-  session_start();
-  if($_SESSION["pusername"]){
-    
-  }
-   else {
-	   header("location: index.php");
-   }
+session_start();
+if (isset($_SESSION["pusername"])) {
+    // Database connection (update these credentials as needed)
+    $link = new mysqli("localhost", "harsh", "harsh2005", "placement");
+
+    if ($link->connect_error) {
+        die("Connection failed: " . $link->connect_error);
+    }
+
+    // Fetch the approval status of the user from the database
+    $username = $_SESSION["pusername"];
+    $sql = "SELECT Approve FROM plogin WHERE username = ?";
+    $stmt = $link->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $row = $result->fetch_assoc();
+
+        if ($row["Approve"] != 1) {
+            // User is not approved, show a modal message
+            echo '
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 style="color: red;">Profile Not Approved</h2>
+                    <p>Your company profile is not approved yet.</p>
+                    <p>To get verified, ensure that all required information is filled out accurately and submit any necessary documentation.</p>
+                    <p>If you have already submitted your details, please contact the administrator for further assistance.</p>
+                    <button class="close-button" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+            <script>
+                // Function to close the modal
+                function closeModal() {
+                    document.getElementById("modal").style.display = "none";
+                }
+                // Show the modal on page load
+                window.onload = function() {
+                    document.getElementById("modal").style.display = "block";
+                }
+            </script>
+            <style>
+                /* Modal styles */
+                .modal {
+                    display: none; /* Hidden by default */
+                    position: fixed; /* Stay in place */
+                    z-index: 1; /* Sit on top */
+                    left: 0;
+                    top: 0;
+                    width: 100%; /* Full width */
+                    height: 100%; /* Full height */
+                    overflow: auto; /* Enable scroll if needed */
+                    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+                .modal-content {
+                    background-color: #fefefe;
+                    margin: 15% auto; /* 15% from the top and centered */
+                    padding: 20px;
+                    border: 1px solid #888;
+                    width: 80%; /* Could be more or less, depending on screen size */
+                    text-align: center;
+                }
+                .close {
+                    color: #aaa;
+                    float: right;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+                .close:hover,
+                .close:focus {
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                .close-button {
+                    background-color: #f44336; /* Red background */
+                    color: white; /* White text */
+                    border: none;
+                    padding: 10px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin-top: 10px;
+                    cursor: pointer;
+                }
+                .close-button:hover {
+                    background-color: #d32f2f; /* Darker red on hover */
+                }
+            </style>
+            ';
+        } else {
+            // User is approved, no popup needed
+            echo "<p>Welcome, {$username}! You can now access your profile.</p>";
+            // Additional code to show the company's profile or dashboard
+            // For example, include('company_dashboard.php'); or similar
+        }
+    } else {
+        echo "<p style='color: red; text-align: center;'>Error: User not found or invalid session.</p>";
+        exit();
+    }
+
+    // Close the statement and database connection
+    $stmt->close();
+    $link->close();
+} else {
+    echo "<p style='color: red; text-align: center;'>Error: User session not set.</p>";
+    exit();
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

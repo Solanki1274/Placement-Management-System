@@ -1,98 +1,115 @@
 <?php
-  session_start();
-  if($_SESSION["username"]){
-    echo "Welcome, ".$_SESSION['username']."!";
-  }
-   else {
-	   header("location: index.php");
-}
-   
-?>
-<?php
-$connect = mysql_connect("localhost", "hmc", "159753"); // Establishing Connection with Server
-mysql_select_db("details"); // Selecting Database from Server
-if(isset($_POST['submit']))
-{ 
-$fname = $_POST['Fname'];
-$lname = $_POST['Lname'];
-$USN = $_POST['USN'];
-$sun = $_SESSION["username"];
-$phno = $_POST['Num'];
-$email = $_POST['Email'];
-$date = $_POST['DOB'];
-$cursem = $_POST['Cursem'];
-$branch = $_POST['Branch'];
-$per = $_POST['Percentage'];
-$puagg = $_POST['Puagg'];
-$beaggregate = $_POST['Beagg'];
-$back = $_POST['Backlogs'];
-$hisofbk = $_POST['History']; 
-$detyear = $_POST['Dety'];
-if($USN !=''||$email !='')
-{
-	if($USN == $sun)
-    {
-    if($query = mysql_query("INSERT INTO `details`.`basicdetails` ( `FirstName`, `LastName`, `USN`, `Mobile`, `Email`, `DOB`, `Sem`, `Branch`, `SSLC`, `PU/Dip`, `BE`, `Backlogs`, `HofBacklogs`, `DetainYears`, `Approve`) 
-          VALUES ('$fname', '$lname', '$USN', '$phno', '$email', '$date', '$cursem', '$branch', '$per', '$puagg', '$beaggregate', '$back', '$hisofbk', '$detyear', '0')"))
-    {
-				echo "<center>Details has been received successfully...!!</center>";
-      }
-	  
-     
-		else echo "FAILED";
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION["username"])) {
+    header("Location: index.php");
+    exit();
 }
 
-else{
-	  echo "<center>enter your USN only...!!</center>";
-}
-}
-}
-?>
+echo "Welcome, " . htmlspecialchars($_SESSION['username']) . "!";
 
+$connect = mysqli_connect("localhost", "harsh", "harsh2005", "placement");
 
-<?php
-$connect = mysql_connect("localhost", "root", ""); // Establishing Connection with Server
-mysql_select_db("details"); // Selecting Database from Server
-if(isset($_POST['update']))
-{ 
-$fname = $_POST['Fname'];
-$lname = $_POST['Lname'];
-$USN = $_POST['USN'];
-$sun = $_SESSION["username"];
-$phno = $_POST['Num'];
-$email = $_POST['Email'];
-$date = $_POST['DOB'];
-$cursem = $_POST['Cursem'];
-$branch = $_POST['Branch'];
-$per = $_POST['Percentage'];
-$puagg = $_POST['Puagg'];
-$beaggregate = $_POST['Beagg'];
-$back = $_POST['Backlogs'];
-$hisofbk = $_POST['History']; 
-$detyear = $_POST['Dety'];
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-if($USN !=''||$email !='')
-{
-	if($USN == $sun)
-	{
-		
-	$sql = mysql_query("SELECT * FROM `details`.`basicdetails` WHERE `USN`='$USN'");
-	if(mysql_num_rows($sql) == 1)
-	{
-  
-		if($query = mysql_query("UPDATE `details`.`basicdetails` SET `FirstName`='$fname', `LastName`='$lname', `Mobile`='$phno', `Email`='$email', `DOB`='$date', `Sem`='$cursem', `Branch`= '$branch', `SSLC`='$per', `PU/Dip`='$puagg', `BE`='$beaggregate', `Backlogs`='$back', `HofBacklogs`='$hisofbk', `DetainYears`='$detyear' ,`Approve`='0'
-           WHERE `basicdetails`.`USN` = '$USN'"))
-               {
-				echo "<center>Data Updated successfully...!!</center>";
-               }
-	  
-            else echo "<center>FAILED</center>";
-		
-	}	
-	else echo "<center>NO record found for update</center>";
-	}
-else
-	echo "<center>enter your usn only</center>";
+// Handle form submission for inserting new data
+if (isset($_POST['submit'])) {
+    $fname = $_POST['Fname'];
+    $lname = $_POST['Lname'];
+    $usn = $_POST['USN'];
+    $sun = $_SESSION["username"];  // This should be the USN stored in the session
+    $phno = $_POST['Num'];
+    $email = $_POST['Email'];
+    $date = $_POST['DOB'];
+    $cursem = $_POST['Cursem'];
+    $branch = $_POST['Branch'];
+    $per = $_POST['Percentage'];
+    $puagg = $_POST['Puagg'];
+    $beaggregate = $_POST['Beagg'];
+    $back = $_POST['Backlogs'];
+    $hisofbk = $_POST['History'];
+    $detyear = $_POST['Dety'];
+
+    // Debug output to check values
+    echo "<pre>";
+    echo "Entered USN: '" . htmlspecialchars($usn) . "'<br>";
+    echo "Session USN: '" . htmlspecialchars($sun) . "'<br>";
+    echo "Length of Entered USN: " . strlen($usn) . "<br>";
+    echo "Length of Session USN: " . strlen($sun) . "<br>";
+    echo "</pre>";
+
+    if ($usn && $email) {
+        // Check if the entered USN matches the session USN
+        if ($usn === $sun) {
+            $stmt = $connect->prepare("INSERT INTO basicdetails (FirstName, LastName, USN, Mobile, Email, DOB, Sem, Branch, SSLC, `PU/Dip`, BE, Backlogs, HofBacklogs, DetainYears, Approve) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0')");
+            $stmt->bind_param("ssssssssssssss", $fname, $lname, $usn, $phno, $email, $date, $cursem, $branch, $per, $puagg, $beaggregate, $back, $hisofbk, $detyear);
+
+            if ($stmt->execute()) {
+                echo "<center>Data inserted successfully...!!</center>";
+            } else {
+                echo "<center>Failed to insert data</center>";
+            }
+            $stmt->close();
+        } else {
+            echo "<center>Please enter your own USN only...!!</center>";
+        }
+    }
 }
+
+// Handle form submission for updating existing data
+if (isset($_POST['update'])) {
+    $fname = $_POST['Fname'];
+    $lname = $_POST['Lname'];
+    $usn = $_POST['USN'];
+    $sun = $_SESSION["username"];
+    $phno = $_POST['Num'];
+    $email = $_POST['Email'];
+    $date = $_POST['DOB'];
+    $cursem = $_POST['Cursem'];
+    $branch = $_POST['Branch'];
+    $per = $_POST['Percentage'];
+    $puagg = $_POST['Puagg'];
+    $beaggregate = $_POST['Beagg'];
+    $back = $_POST['Backlogs'];
+    $hisofbk = $_POST['History'];
+    $detyear = $_POST['Dety'];
+
+    if ($usn && $email) {
+        // Debug output to check values
+        // echo "<pre>";
+        // echo "Updating - Entered USN: '" . htmlspecialchars($usn) . "'<br>";
+        // echo "Session USN: '" . htmlspecialchars($sun) . "'<br>";
+        // echo "</pre>";
+
+        if ($usn === $sun) {
+            $stmt = $connect->prepare("SELECT * FROM basicdetails WHERE USN = ?");
+            $stmt->bind_param("s", $usn);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 1) {
+                $stmt->close();
+                $stmt = $connect->prepare("UPDATE basicdetails SET FirstName = ?, LastName = ?, Mobile = ?, Email = ?, DOB = ?, Sem = ?, Branch = ?, SSLC = ?, `PU/Dip` = ?, BE = ?, Backlogs = ?, HofBacklogs = ?, DetainYears = ?, Approve = '0' WHERE USN = ?");
+                $stmt->bind_param("ssssssssssssss", $fname, $lname, $phno, $email, $date, $cursem, $branch, $per, $puagg, $beaggregate, $back, $hisofbk, $detyear, $usn);
+
+                if ($stmt->execute()) {
+                    echo "<center>Data updated successfully...!!</center>";
+                } else {
+                    echo "<center>Failed to update data</center>";
+                }
+                $stmt->close();
+            } else {
+                echo "<center>No record found for update</center>";
+            }
+        } else {
+            echo "<center>Please enter your own USN only</center>";
+        }
+    }
 }
+
+mysqli_close($connect);
 ?>

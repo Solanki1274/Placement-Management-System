@@ -17,30 +17,48 @@ if ($link->connect_error) {
 
 // Initialize variables
 $id = $_POST["id"] ?? '';
-$dob = $_POST["DOB"] ?? '';
 $message = "";
 
 // Handle approval
-if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($id) && !empty($dob)) {
-    // Prepare and bind
-    $sql = "UPDATE basicdetails SET Approve=?, ApprovalDate=? WHERE USN=?";
+if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($id)) {
+    // Prepare and bind for basicdetails table
+    $sql = "UPDATE basicdetails SET Approve=?, ApprovalDate=NOW() WHERE USN=?";
     $stmt = $link->prepare($sql);
 
     if ($stmt) {
         $approve = 1; // Set approval value
-        $stmt->bind_param("isi", $approve, $dob, $id);
+        $stmt->bind_param("is", $approve, $id); // 'is' because Approve is an integer and USN is a string
 
-        // Execute the statement
+        // Execute the statement for basicdetails table
         if ($stmt->execute()) {
-            $message = "USN: $id approved successfully.";
-        } else {
-            $message = "Error: " . $stmt->error;
-        }
+            // After successful approval in basicdetails, update the slogin table
+            // Close the first statement before preparing a new one
+            $stmt->close(); 
 
-        // Close the statement
-        $stmt->close();
+            // Prepare and bind for slogin table
+            $sql_slogin = "UPDATE slogin SET Approve=? WHERE USN=?";
+            $stmt_slogin = $link->prepare($sql_slogin);
+
+            if ($stmt_slogin) {
+                $stmt_slogin->bind_param("is", $approve, $id); // 'is' because Approve is an integer and USN is a string
+
+                // Execute the statement for slogin table
+                if ($stmt_slogin->execute()) {
+                    $message = "USN: $id approved successfully.";
+                } else {
+                    $message = "Error updating slogin: " . $stmt_slogin->error;
+                }
+
+                // Close the second statement
+                $stmt_slogin->close();
+            } else {
+                $message = "Error preparing statement for slogin: " . $link->error;
+            }
+        } else {
+            $message = "Error updating basicdetails: " . $stmt->error;
+        }
     } else {
-        $message = "Error preparing statement: " . $link->error;
+        $message = "Error preparing statement for basicdetails: " . $link->error;
     }
 }
 

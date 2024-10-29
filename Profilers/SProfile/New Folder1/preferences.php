@@ -232,9 +232,9 @@
             </form>
           </div>
           <footer class="text-right">
-            <p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://www.wafferdevelopers.com" target="_parent">Waffer Developers</a>
-            </p>
+           		<p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
+			  </p>
           </footer>
         </div>
       </div>

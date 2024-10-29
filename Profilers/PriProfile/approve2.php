@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (isset($_SESSION['husername'])) {
+if (isset($_SESSION['priusername'])) {
     // User is logged in
 } else {
     header("location: index.php");
+    exit; // It's good practice to add exit after header redirection.
 }
 ?>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ if (isset($_SESSION['husername'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Approve USN</title>
+    <title>Approve Company</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,17 +60,18 @@ if (isset($_SESSION['husername'])) {
     <script>
         // Function to confirm approval before form submission
         function confirmApproval() {
-            return confirm("Are you sure you want to approve this USN?");
+            return confirm("Are you sure you want to approve this company?");
         }
     </script>
 </head>
 <body>
-    <h1>Approve USN</h1>
+    <h1>Approve Company</h1>
     <form action="approve.php" method="post" onsubmit="return confirmApproval()">
-        <label for="id">Enter the USN:</label>
-        <input type="text" name="id" id="id" required><br><br>
+        <label for="company_id">Enter the Company ID:</label>
+        <input type="text" name="company_id" id="company_id" required><br><br>
         
-        <!-- Removed the date input as per your request -->
+        <label for="company_name">Enter the Company Name:</label>
+        <input type="text" name="company_name" id="company_name" required><br><br>
         
         <input type="submit" value="Approve">
     </form>
