@@ -18,7 +18,7 @@ if (isset($_SESSION['husername'])) {
             background-color: #f4f4f4;
             color: #333;
             text-align: center;
-            padding: 50px;
+            padding: 0px;
         }
         h1 {
             color: #4CAF50; /* Green color for the heading */
@@ -64,6 +64,65 @@ if (isset($_SESSION['husername'])) {
     </script>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/icon">
+    <link rel="icon" href="favicon.ico" type="image/icon">    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HOD - Preferences</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/templatemo-style.css" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="templatemo-flex-row">
+        <div class="templatemo-sidebar">
+            <header class="templatemo-site-header">
+                <div class="square"></div>
+                <?php
+                $Welcome = "Welcome";
+                echo "<h1>" . $Welcome . "<br>". $_SESSION['husername']. "</h1>";
+                echo "<h1>(</h1>";
+                echo "<h1>" . $_SESSION['department']. "</h1>";   
+                echo "<h1>)</h1>";
+                ?>
+            </header>
+            <div class="profile-photo-container">
+                <img src="images/profile-photo.jpg" alt="Profile Photo" class="img-responsive">
+                <div class="profile-photo-overlay"></div>
+            </div>
+            <nav class="templatemo-left-nav">
+                <ul>
+                    <li><a href="login.php"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>           
+                    <li><a href="manage-students.php"><i class="fa fa-users fa-fw"></i>Manage Students</a></li>
+                    <li><a href="preferences.php" ><i class="fa fa-sliders fa-fw"></i>Preferences</a></li>
+                    <li><a href="approve2.php" class="active"><i class="fa fa-sliders fa-fw"></i>Approve Students</a></li>
+                    <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="templatemo-content col-1 light-gray-bg">
+            <div class="templatemo-top-nav-container">
+                <div class="row">
+                    <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                        <ul class="text-uppercase">
+                            <li><a href="../../Homepage/index.php">Home CIT-PMS</a></li>
+                            <li><a href="../../Drives/index.php">Drives</a></li>
+                            <li><a href="Notif.php">Notification</a></li>
+                            <li><a href="Change Password.php">Change Password</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
     <h1>Approve USN</h1>
     <form action="approve.php" method="post" onsubmit="return confirmApproval()">
         <label for="id">Enter the USN:</label>
@@ -73,5 +132,17 @@ if (isset($_SESSION['husername'])) {
         
         <input type="submit" value="Approve">
     </form>
+    
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> 
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script> 
+    <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+    <script type="text/javascript" src="js/templatemo-script.js"></script>
+    <footer class="text-right">
+           <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
+          </footer>         
+        </div>
+      </div>
+    </div>
 </body>
 </html>

@@ -65,8 +65,9 @@
         <nav class="templatemo-left-nav">          
           <ul>
             <li><a href="#" class="active"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>    
-            <li><a href="manage-student.php"><i class="fa fa-users fa-fw"></i>Manage Students</a></li>
+            <li><a href="manage-students.php"><i class="fa fa-users fa-fw"></i>Manage Students</a></li>
             <li><a href="preferences.php"><i class="fa fa-sliders fa-fw"></i>Preferences</a></li>
+            <li><a href="approve2.php"><i class="fa fa-sliders fa-fw"></i>Approve Students</a></li>
             <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
           </ul>  
         </nav>
@@ -201,8 +202,8 @@
           </div> <!-- Second row ends -->
       
           <footer class="text-right">
-           <p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+           <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="#" target="_parent">Hmc FutureTechnologies</a>
           </footer>         
         </div>
       </div>

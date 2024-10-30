@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($id)) {
 
                 // Execute the statement for slogin table
                 if ($stmt_slogin->execute()) {
-                    $message = "USN: $id approved successfully.";
+                    $message = "USN: $id Approved successfully.";
                 } else {
                     $message = "Error updating slogin: " . $stmt_slogin->error;
                 }
@@ -73,7 +73,7 @@ $link->close();
     <link rel="shortcut icon" href="favicon.ico" type="image/icon">
     <link rel="icon" href="favicon.ico" type="image/icon">
     <title>Approval Status</title>
-    <meta http-equiv='refresh' content='3; url=manage-users1.php'> <!-- Change this to redirect to your desired page -->
+    <meta http-equiv='refresh' content='3; url=manage-users.php'> <!-- Change this to redirect to your desired page -->
     <style>
         body {
             font-family: Arial, sans-serif;

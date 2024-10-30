@@ -18,7 +18,7 @@
     <title>Student - Change Password</title>
     <meta name="description" content="">
     <meta name="author" content="templatemo">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -104,31 +104,40 @@
               <div class="row form-group">
                 
               <div class="row form-group">
-                <div class="col-lg-6 col-md-6 form-group">                  
-                    <label for="inputCurrentPassword">Current Password</label>
-                    <input type="password" class="form-control highlight" id="inputCurrentPassword" placeholder="*******" name="curpassword">                  
-                </div>                
-              </div>
-              <div class="row form-group">
-                <div class="col-lg-6 col-md-6 form-group">                  
-                    <label for="inputNewPassword">New Password</label>
-                    <input type="password" class="form-control" id="inputNewPassword" name="Password">
-                </div>
-                <div class="col-lg-6 col-md-6 form-group">                  
-                    <label for="inputConfirmNewPassword">Confirm New Password</label>
-                    <input type="password" class="form-control" id="inputConfirmNewPassword" name="repassword">
-                </div> 
-              
-              </div>
-              <div class="form-group text-right">
-                <button type="submit" class="templatemo-blue-button">Update</button>
-                <button type="reset" class="templatemo-white-button">Reset</button>
-              </div>                           
+    <div class="col-lg-6 col-md-6 form-group">                  
+        <label for="inputCurrentPassword">Current Password</label>
+        <div class="password-container">
+            <input type="password" class="form-control highlight" id="inputCurrentPassword" placeholder="*******" name="curpassword">
+            <i class="fa fa-eye-slash toggle-icon" onclick="togglePasswordVisibility('inputCurrentPassword', this)"></i>
+        </div>                 
+    </div>                
+</div>
+<div class="row form-group">
+    <div class="col-lg-6 col-md-6 form-group">                  
+        <label for="inputNewPassword">New Password</label>
+        <div class="password-container">
+            <input type="password" class="form-control" id="inputNewPassword" name="Password">
+            <i class="fa fa-eye-slash toggle-icon" onclick="togglePasswordVisibility('inputNewPassword', this)"></i>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 form-group">                  
+        <label for="inputConfirmNewPassword">Confirm New Password</label>
+        <div class="password-container">
+            <input type="password" class="form-control" id="inputConfirmNewPassword" name="repassword">
+            
+        </div>
+    </div> 
+</div>
+<div class="form-group text-right">
+    <button type="submit" class="templatemo-blue-button">Update</button>
+    <button type="reset" class="templatemo-white-button">Reset</button>
+</div>
+ 
             </form>
           </div>
           <footer class="text-right">
-            <p>Copyright &copy; 2001-2015 CIT-PMS
-            | Developed by <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a></p>
+            <p>Copyright &copy; 2024 Hmc-PMS
+            | Developed by <a href="#" target="_parent">Hmc FutureTechnologies</a></p>
           </footer>       
         </div>
       </div>
@@ -137,6 +146,22 @@
     <!-- JS -->
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>        <!-- jQuery -->
     <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
-    <script type="text/javascript" src="js/templatemo-script.js"></script>        <!-- Templatemo Script -->
+    <script type="text/javascript" src="js/templatemo-script.js"></script>
+    <script>
+   function togglePasswordVisibility(inputId, icon) {
+    const passwordInput = document.getElementById(inputId);
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    } else {
+        passwordInput.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    }
+}
+
+    </script>    
   </body>
 </html>

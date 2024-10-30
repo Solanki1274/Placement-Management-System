@@ -110,31 +110,31 @@
               <div class="row form-group">
                 <div class="col-lg-6 col-md-6 form-group">
                   <label for="inputFirstName">First Name</label>
-                  <input type="text" name="Fname" class="form-control" id="inputFirstName" placeholder="Ram">
+                  <input type="text" name="Fname" class="form-control" id="inputFirstName" placeholder="Harsh" required>
                 </div>
                 <div class="col-lg-6 col-md-6 form-group">
                   <label for="inputLastName">Last Name</label>
-                  <input type="text"  name="Lname" class="form-control" id="inputLastName" placeholder="Laxman">
+                  <input type="text"  name="Lname" class="form-control" id="inputLastName" placeholder="Solanki" required>
                 </div>
 				
 				<div class="col-lg-6 col-md-6 form-group">
                   <label for="usn">USN</label>
-                  <input type="text" name="USN" class="form-control" id="usn" placeholder="1CG12IS000" >
+                  <input type="text" name="USN" class="form-control" id="usn" placeholder="22CSE019" required >
                 </div>
                
 				<div class="col-lg-6 col-md-6 form-group">
                   <label for="Phone">Phone:</label>
-                  <input type="text" name="Num" class="form-control" id="Phone" placeholder="91xxxxxxxx">
+                  <input type="text" name="Num" class="form-control" id="Phone" placeholder="91xxxxxxxx" required>
                 </div>
 				
 				 <div class="col-lg-6 col-md-6 form-group">
                   <label for="Email">Email</label>
-                  <input type="Email" name="Email" class="form-control" id="Email" placeholder="abc@example.com">
+                  <input type="Email" name="Email" class="form-control" id="Email" placeholder="abc@example.com" required>
                 </div>
 				
                 <div class="col-lg-6 col-md-6 form-group">
                   <label for="DOB">Date of Birth</label>
-                  <input type="date" name="DOB" class="form-control" id="DOB" placeholder="DD/MM/YYYY">
+                  <input type="date" name="DOB" class="form-control" id="DOB" placeholder="DD/MM/YYYY" required>
                 </div>
 				<div class="col-lg-6 col-md-6 form-group">
                   <label class="control-label templatemo-block">Current Semester</label>
@@ -154,9 +154,7 @@
 				
 				  <div class="col-lg-6 col-md-6 form-group">
                   <label class="control-label templatemo-block">Branch of Study</label>
-                  <select name="Branch" class="form-control">
-                    <option value="select">Branch</option>
-                    <option value="BScience">Basic Science</option>
+                  <select name="Branch" class="form-control" required>
                     <option value="ISE">ISE</option>
                     <option value="CSE">CSE</option>
                     <option value="EEE">EEE</option>
@@ -167,19 +165,19 @@
                 </div>
 				<div class="col-lg-6 col-md-6 form-group">
                   <label for="sslc">SSLC/10th Aggregate</label>
-                  <input type="text" name="Percentage" class="form-control" id="sslc" placeholder="">
+                  <input type="text" name="Percentage" class="form-control" id="sslc" placeholder="" required>
                 </div>
 				<div class="col-lg-6 col-md-6 form-group">
                   <label for="Pu">12th/Diploma Aggregate</label>
-                  <input type="text" name="Puagg" class="form-control" id="Pu" placeholder="">
+                  <input type="text" name="Puagg" class="form-control" id="Pu" placeholder="" required>
                 </div>
 				<div class="col-lg-6 col-md-6 form-group">
                   <label for="BE">BE Aggregate</label>
-                  <input type="text" name="Beagg" class="form-control" id="BE" placeholder="">
+                  <input type="text" name="Beagg" class="form-control" id="BE" placeholder="" required>
                 </div>
                 <div class="col-lg-6 col-md-6 form-group">
                   <label class="control-label templatemo-block">Current Backlogs</label>
-                  <select name="Backlogs" class="form-control">
+                  <select name="Backlogs" class="form-control" required>
                     <option value="select">Numbers</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -194,7 +192,7 @@
                 </div>
 				<div class="col-lg-6 col-md-6 form-group">
                   <label class="control-label templatemo-block">History of Backlogs</label>
-                  <select name="History" class="form-control">
+                  <select name="History" class="form-control" required>
                     <option value="Y/N">Y/N</option>
                     <option value="Y">Y</option>
                     <option value="N">N</option>
@@ -202,7 +200,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 form-group">
                   <label class="control-label templatemo-block">Detained Years</label>
-                  <select name="Dety" class="form-control">
+                  <select name="Dety" class="form-control" required>
                     <option value="select">Years</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -225,8 +223,8 @@
               </div>
               <div class="form-group text-right">
                 
-				<button type="submit"  name="submit" class="templatemo-blue-button">add</button>
-				<button type="submit"  name="update" class="templatemo-blue-button">update</button>
+				<button type="submit"  name="submit" class="templatemo-blue-button">Add</button>
+				<button type="submit"  name="update" class="templatemo-blue-button">Update</button>
                 <button type="reset" class="templatemo-white-button">Reset</button>
               </div>
             </form>

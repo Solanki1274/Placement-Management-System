@@ -47,6 +47,7 @@ if (isset($_SESSION['husername'])) {
             <li><a href="login.php"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
             <li><a href="#" class="active"><i class="fa fa-users fa-fw"></i>Manage Students</a></li>
             <li><a href="preferences.php"><i class="fa fa-sliders fa-fw"></i>Preferences</a></li>
+            <li><a href="approve2.php"><i class="fa fa-sliders fa-fw"></i>Approve Students</a></li>
             <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
           </ul>
         </nav>
@@ -85,6 +86,7 @@ if (isset($_SESSION['husername'])) {
                     <td>Current Backlogs</td>
                     <td>History of Backlogs</td>
                     <td>Detain Years</td>
+                    <td>Approve?</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -100,7 +102,7 @@ if (isset($_SESSION['husername'])) {
                   }
                   
                   $start_from = ($page - 1) * $num_rec_per_page;
-                  $sql = "SELECT * FROM basicdetails WHERE Approve=0 AND Branch='$department' LIMIT $start_from, $num_rec_per_page";
+                  $sql = "SELECT * FROM basicdetails WHERE  Branch='$department' LIMIT $start_from, $num_rec_per_page";
                   $result = $conn->query($sql);
                   
                   while ($row = $result->fetch_assoc()) {
@@ -119,6 +121,7 @@ if (isset($_SESSION['husername'])) {
                       echo "<td>" . $row['Backlogs'] . "</td>";
                       echo "<td>" . $row['HofBacklogs'] . "</td>";
                       echo "<td>" . $row['DetainYears'] . "</td>";
+                      echo "<td>" . $row['Approve'] . "</td>";
                       echo "</tr>";
                   }
                   ?>
@@ -130,7 +133,7 @@ if (isset($_SESSION['husername'])) {
           <div class="pagination-wrap">
             <ul class="pagination">
               <?php
-              $sql = "SELECT * FROM basicdetails WHERE Approve=0 AND Branch='$department'";
+              $sql = "SELECT * FROM basicdetails WHERE Approve=1 AND Branch='$department'";
               $result = $conn->query($sql);
               $total_records = $result->num_rows;
               $total_pages = ceil($total_records / $num_rec_per_page);
@@ -152,7 +155,7 @@ if (isset($_SESSION['husername'])) {
 
           <center>
             <label><h2>OR</h2></label>
-            <a href="manage-users1.php" class="templatemo-blue-button">View All</a>
+            <a href="manage-users.php" class="templatemo-blue-button">View All</a>
           </center>
           <footer class="text-right">
             <p>&copy; 2024 Hmc-PMS | Developed by <a href="#" target="_blank">Hmc FutureTechnologies</a></p>
