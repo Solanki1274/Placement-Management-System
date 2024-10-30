@@ -185,7 +185,7 @@
             </form>
           </div>
           <footer class="text-right">
-          		<p>Copyright &copy; 2024Hmc-PMS | Developed by
+          		<p>Copyright &copy; 2024 Hmc-PMS | Developed by
               <a href="#" target="_parent">Hmc FutureTechnologies</a>
 			  </p>
           </footer>

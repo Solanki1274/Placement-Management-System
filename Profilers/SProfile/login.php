@@ -123,7 +123,7 @@ if ($stmt) {
             ';
         } else {
             // User is approved, no popup needed
-            echo "<p>Welcome, $username! You can now access your profile.</p>";
+           
             // Here you can include additional code to show the student's profile or dashboard
             // For example, include('student_dashboard.php'); or similar
         }
@@ -199,7 +199,7 @@ $conn->close();
               <a href="#" class="active"><i class="fa fa-home fa-fw"></i>Dashboard</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-bar-chart fa-fw"></i>Placement Drives</a>
+              <a href="placement_drives.php"><i class="fa fa-bar-chart fa-fw"></i>Placement Drives</a>
             </li>
             <li>
               <a href="preferences.php"><i class="fa fa-sliders fa-fw"></i>Preferences</a>
