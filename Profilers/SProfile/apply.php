@@ -92,10 +92,6 @@ $applied_stmt->close();
 $conn->close();
 ?>
 
-
-<!-- HTML and CSS for your form -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 

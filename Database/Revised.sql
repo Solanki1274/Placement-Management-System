@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `applications` (
     `first_name` VARCHAR(25) NOT NULL,
     `last_name` VARCHAR(25) NOT NULL,
     `applied_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`company_name`) REFERENCES `addpdrive`(`CompanyName`) ON DELETE CASCADE,
+    FOREIGN KEY (`company_name`) REFERENCES `addpdrive`(`Name`) ON DELETE CASCADE,
     FOREIGN KEY (`usn`) REFERENCES `basicdetails`(`USN`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
