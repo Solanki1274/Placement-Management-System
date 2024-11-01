@@ -235,7 +235,7 @@ $conn->close();
       </div>
       <div class="container">
         <h2 class="mt-4">Applications for <?php echo htmlspecialchars($company_name); ?></h2>
-        <table class="application-table">
+        <table class="table table-striped table-bordered templatemo-user-table">
           <thead>
             <tr>
               <th>Application ID</th>
@@ -256,7 +256,7 @@ $conn->close();
                   <td><?php echo htmlspecialchars($app['last_name']); ?></td>
                   <td><?php echo htmlspecialchars($app['applied_at']); ?></td>
                   <td class="button-container">
-                    <form action="schedule_interview.php" method="post">
+                    <form action="scheduleinterview.php" method="post">
                       <input type="hidden" name="application_id" value="<?php echo $app['id']; ?>">
                       <button type="submit" class="action-btn">Schedule Interview</button>
                     </form>

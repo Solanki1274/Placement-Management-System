@@ -105,113 +105,117 @@ $conn->close();
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<style>
-    /* styles.css */
+    <style>
+        /* styles.css */
 
 
 
 
-.profile-card {
-    padding: 20px;
-}
+        .profile-card {
+            padding: 20px;
+        }
 
-.profile-card h2 {
-    text-align: center;
-    color: #333;
-}
+        .profile-card h2 {
+            text-align: center;
+            color: #333;
+        }
 
-.profile-card p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 10px 0;
-}
+        .profile-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
 
-.close-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 20px;
-}
+        .close-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-.close-btn:hover {
-    background-color: #0056b3;
-}
-.container {
-    max-width: 800px;
-    margin-top: 30px;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
+        .close-btn:hover {
+            background-color: #0056b3;
+        }
 
-.profile-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .container {
+            max-width: 800px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
 
-.profile-header h2 {
-    margin: 0;
-    color: #333;
-}
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.close-btn {
-    padding: 10px 15px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        .profile-header h2 {
+            margin: 0;
+            color: #333;
+        }
 
-.close-btn:hover {
-    background-color: #c82333;
-}
+        .close-btn {
+            padding: 10px 15px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-.profile-card, .academic-card, .approval-card {
-    margin-top: 20px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        .close-btn:hover {
+            background-color: #c82333;
+        }
 
-.profile-card h3, .academic-card h3, .approval-card h3 {
-    margin: 0 0 15px;
-    color: #007bff;
-}
+        .profile-card,
+        .academic-card,
+        .approval-card {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-.profile-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-}
+        .profile-card h3,
+        .academic-card h3,
+        .approval-card h3 {
+            margin: 0 0 15px;
+            color: #007bff;
+        }
 
-.info-item {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-}
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
 
-.info-item strong {
-    display: block;
-    color: #495057;
-}
+        .info-item {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.info-item p {
-    margin: 5px 0 0;
-    color: #343a40;
-}
+        .info-item strong {
+            display: block;
+            color: #495057;
+        }
 
-</style>
+        .info-item p {
+            margin: 5px 0 0;
+            color: #343a40;
+        }
+    </style>
 </head>
 
 <body>
@@ -267,99 +271,114 @@ $conn->close();
                 </div>
             </div>
             <div class="container">
-            <h1>Profile Details</h1>
-        <div class="profile-card">
-            <h3>Personal Information</h3>
-            <div class="profile-info">
-                <div class="info-item">
-                    <strong>First Name:</strong>
-                    <p><?php echo htmlspecialchars($profile['FirstName']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Last Name:</strong>
-                    <p><?php echo htmlspecialchars($profile['LastName']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>USN:</strong>
-                    <p><?php echo htmlspecialchars($profile['USN']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Mobile:</strong>
-                    <p><?php echo htmlspecialchars($profile['Mobile']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Email:</strong>
-                    <p><?php echo htmlspecialchars($profile['Email']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Date of Birth:</strong>
-                    <p><?php echo htmlspecialchars($profile['DOB']); ?></p>
-                </div>
-            </div>
-        </div>
-        <div class="academic-card">
-            <h3>Academic Details</h3>
-            <div class="profile-info">
-                <div class="info-item">
-                    <strong>Semester:</strong>
-                    <p><?php echo htmlspecialchars($profile['Sem']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Branch:</strong>
-                    <p><?php echo htmlspecialchars($profile['Branch']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>SSLC:</strong>
-                    <p><?php echo htmlspecialchars($profile['SSLC']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>PU/Dip:</strong>
-                    <p><?php echo htmlspecialchars($profile['PU/Dip']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>BE:</strong>
-                    <p><?php echo htmlspecialchars($profile['BE']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Backlogs:</strong>
-                    <p><?php echo htmlspecialchars($profile['Backlogs']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>HOF Backlogs:</strong>
-                    <p><?php echo htmlspecialchars($profile['HofBacklogs']); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Detain Years:</strong>
-                    <p><?php echo htmlspecialchars($profile['DetainYears']); ?></p>
-                </div>
-            </div>
-        </div>
-        <div class="approval-card">
-            <h3>Approval Status</h3>
-            <div class="profile-info">
-                <div class="info-item">
-                    <strong>Approval Status:</strong>
-                    <p><?php echo htmlspecialchars($profile['Approve'] ? 'Approved' : 'Not Approved'); ?></p>
-                </div>
-                <div class="info-item">
-                    <strong>Approval Date:</strong>
-                    <p><?php echo htmlspecialchars($profile['ApprovalDate']); ?></p>
+                <h1>Profile Details</h1>
+                <div class="profile-card">
+                    <h3>Personal Information</h3>
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <strong>First Name:</strong>
+                            <p><?php echo htmlspecialchars($profile['FirstName']); ?></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Last Name:</strong>
+                            <p><?php echo htmlspecialchars($profile['LastName']); ?></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>USN:</strong>
+                            <p><?php echo htmlspecialchars($profile['USN']); ?></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Mobile:</strong>
+                            <p><?php echo htmlspecialchars($profile['Mobile']); ?></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Email:</strong>
+                            <p><?php echo htmlspecialchars($profile['Email']); ?></p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Date of Birth:</strong>
+                            <p>
+                                <?php
+                                // Assuming $profile['DOB'] is in `YYYY-MM-DD` format
+                                $dob = DateTime::createFromFormat("Y-m-d", $profile['DOB']);
+                                echo $dob ? $dob->format("d-m-Y") : "Invalid date";
+                                ?>
+                            </p>
+                        </div>
 
+
+                    </div>
+                    <div class="academic-card">
+                        <h3>Academic Details</h3>
+                        <div class="profile-info">
+                            <div class="info-item">
+                                <strong>Semester:</strong>
+                                <p><?php echo htmlspecialchars($profile['Sem']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>Branch:</strong>
+                                <p><?php echo htmlspecialchars($profile['Branch']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>SSLC:</strong>
+                                <p><?php echo htmlspecialchars($profile['SSLC']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>PU/Dip:</strong>
+                                <p><?php echo htmlspecialchars($profile['PU/Dip']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>BE:</strong>
+                                <p><?php echo htmlspecialchars($profile['BE']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>Backlogs:</strong>
+                                <p><?php echo htmlspecialchars($profile['Backlogs']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>HOF Backlogs:</strong>
+                                <p><?php echo htmlspecialchars($profile['HofBacklogs']); ?></p>
+                            </div>
+                            <div class="info-item">
+                                <strong>Detain Years:</strong>
+                                <p><?php echo htmlspecialchars($profile['DetainYears']); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="approval-card">
+                        <h3>Approval Status</h3>
+                        <div class="profile-info">
+                            <div class="info-item">
+                                <strong>Approval Status:</strong>
+                                <p><?php echo htmlspecialchars($profile['Approve'] ? 'Approved' : 'Not Approved'); ?>
+                                </p>
+                            </div>
+
+                            <div class="info-item">
+                                <strong>Date of Birth:</strong>
+                                <p>
+                                    <?php
+                                    // Assuming $profile['DOB'] is in `YYYY-MM-DD` format
+                                    $ard = DateTime::createFromFormat("Y-m-d", $profile['ApprovalDate']);
+                                    echo $ard ? $ard->format("d-m-Y") : "Invalid date";
+                                    ?>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="profile-header">
+
+                        <a href="viewapp.php"><button class="close-btn">Close</button></a>
+                    </div>
                 </div>
+                <footer class="text-right">
+                    <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+                        <a href="#" target="_parent">Hmc FutureTechnologies</a>
+                    </p>
+                </footer>
             </div>
         </div>
-        <div class="profile-header">
-            
-            <a href="viewapp.php"><button  class="close-btn">Close</button></a>
-        </div>
-    </div>
-            <footer class="text-right">
-                <p>Copyright &copy; 2024 Hmc-PMS | Developed by
-                    <a href="#" target="_parent">Hmc FutureTechnologies</a>
-                </p>
-            </footer>
-        </div>
-    </div>
     </div>
     <!-- JS -->
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>

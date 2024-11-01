@@ -341,12 +341,24 @@ INSERT INTO `slogin` (`id`, `Name`, `USN`, `PASSWORD`, `Email`, `Question`, `Ans
 -- Create the applications table
 CREATE TABLE IF NOT EXISTS `applications` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `company_name` VARCHAR(255) NOT NULL,
+    `company_name` VARCHAR(255),
     `usn` VARCHAR(10) NOT NULL,
     `first_name` VARCHAR(25) NOT NULL,
     `last_name` VARCHAR(25) NOT NULL,
     `applied_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`company_name`) REFERENCES `addpdrive`(`Name`) ON DELETE CASCADE,
+    FOREIGN KEY (`company_name`) REFERENCES `addpdrive`(`CompanyName`) ON DELETE CASCADE,
     FOREIGN KEY (`usn`) REFERENCES `basicdetails`(`USN`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `interviews` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `Name` VARCHAR(25) NOT NULL,  -- Foreign key from plogin table
+    `USN` VARCHAR(10) NOT NULL,   -- Foreign key from basicdetails table
+    `interview_at` DATETIME NOT NULL,  -- Date and time of interview
+    `mode` ENUM('Online', 'Offline') NOT NULL,  -- Mode of interview
+    `venue` VARCHAR(100),  -- Place of interview (optional for online)
+    
+    -- Foreign key constraints
+    FOREIGN KEY (`Name`) REFERENCES `addpdrive`(`CompanyName`) ON DELETE CASCADE,
+    FOREIGN KEY (`USN`) REFERENCES `basicdetails`(`USN`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
