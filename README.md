@@ -11,7 +11,7 @@
   5. MySQL (Database)
 
 ## IDE & Tools
-  1. Visual Studio 2013 (PHP Tools Installed)
+  1. Visual Studio 2024 (PHP Tools Installed)
   2. Visual Studio Code (All Files Editing)
   3. XAMPP (Apache Server and MySQL)
   
