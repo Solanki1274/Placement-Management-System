@@ -6,23 +6,66 @@ if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$usn = $_SESSION['username']; // Get logged-in student USN from session
+// Handle interview confirmation and cancellation
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['confirm_interview'])) {
+        $interview_id = $_POST['interview_id'];
+        
+        // Update the interview status to 'Confirmed'
+        $update_query = "UPDATE interviews SET status = 'Confirmed' WHERE id = ?";
+        $stmt = $connect->prepare($update_query);
+        $stmt->bind_param("i", $interview_id);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Interview confirmed successfully.";
+        } else {
+            $_SESSION['alert'] = "Error confirming interview.";
+        }
+        $stmt->close();
+    }
 
-// Fetch interview details for the logged-in student
-$query = "SELECT i.id, i.Name AS company_name, i.USN, i.interview_at, i.mode, i.venue, i.status
-          FROM interviews i
-          WHERE i.USN = ?";
-
-$stmt = $connect->prepare($query);
-if (!$stmt) {
-    die("Preparation failed: " . $connect->error);
+    if (isset($_POST['cancel_interview'])) {
+        $interview_id = $_POST['interview_id'];
+        
+        // Update the interview status to 'Cancelled'
+        $update_query = "UPDATE interviews SET status = 'Cancelled' WHERE id = ?";
+        $stmt = $connect->prepare($update_query);
+        $stmt->bind_param("i", $interview_id);
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Interview cancelled successfully.";
+        } else {
+            $_SESSION['alert'] = "Error cancelling interview.";
+        }
+        $stmt->close();
+    }
 }
 
-$stmt->bind_param("s", $usn);
+// Pagination setup
+$usn = $_SESSION['username']; // Get logged-in student USN from session
+$limit = 5; // Number of records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Get the total number of records for pagination
+$count_query = "SELECT COUNT(*) as total FROM interviews WHERE USN = ?";
+$count_stmt = $connect->prepare($count_query);
+$count_stmt->bind_param("s", $usn);
+$count_stmt->execute();
+$count_result = $count_stmt->get_result();
+$total_records = $count_result->fetch_assoc()['total'];
+$total_pages = ceil($total_records / $limit);
+
+// Fetch paginated interview details
+$query = "SELECT id, Name AS company_name, USN, interview_at, mode, venue, status 
+          FROM interviews 
+          WHERE USN = ? 
+          LIMIT ? OFFSET ?";
+$stmt = $connect->prepare($query);
+$stmt->bind_param("sii", $usn, $limit, $offset);
 $stmt->execute();
-$result = $stmt->get_result(); // Get the result of the query
+$result = $stmt->get_result();
 
 // Close the connection after the query execution
+$count_stmt->close();
 $stmt->close();
 $connect->close();
 ?>
@@ -115,7 +158,87 @@ $connect->close();
             background-color: #f8d7da;
             color: #721c24;
         }
-    </style>
+    
+    .card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.interview-detail p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.button-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-btn {
+    background-color: #5cb85c;
+}
+
+.confirm-btn:hover {
+    background-color: #4cae4c;
+}
+
+.cancel-btn {
+    background-color: #d9534f;
+}
+
+.cancel-btn:hover {
+    background-color: #c9302c;
+}
+
+.confirmed-btn {
+    background-color: #5bc0de;
+    cursor: not-allowed;
+}
+
+.canceled-btn {
+    background-color: #f0ad4e;
+    cursor: not-allowed;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+</style>
 </head>
 
 <body>
@@ -186,48 +309,86 @@ $connect->close();
                     </nav>
                 </div>
             </div>
-            <div class="container">
+            <div class="container mt-4">
     <h1>Your Interview Requests</h1>
 
     <?php if (isset($_SESSION['alert'])): ?>
-        <div class="alert alert-danger"><?php echo $_SESSION['alert']; unset($_SESSION['alert']); ?></div>
-    <?php endif; ?>
-    <?php if (isset($_SESSION['success'])): ?>
-        <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
-    <?php endif; ?>
+    <div class="alert alert-danger"><?php echo $_SESSION['alert']; unset($_SESSION['alert']); ?></div>
+<?php endif; ?>
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
+<?php endif; ?>
 
-    <?php if ($result && $result->num_rows > 0): ?>
-        <!-- Loop through each interview request -->
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="card">
-                <h3><?php echo htmlspecialchars($row['company_name']); ?> Interview</h3>
-                <div class="interview-detail">
-                    <p><strong>Interview Date & Time:</strong>
-                        <?php echo date('d-m-Y H:i', strtotime($row['interview_at'])); ?></p>
-                    <p><strong>Mode:</strong> <?php echo $row['mode']; ?></p>
-                    <?php if ($row['mode'] == 'Offline'): ?>
-                        <p><strong>Venue:</strong> <?php echo htmlspecialchars($row['venue']); ?></p>
-                    <?php endif; ?>
-                    <p><strong>Status:</strong>
-                        <?php echo $row['status'] ? htmlspecialchars($row['status']) : 'Pending'; ?></p>
-                </div>
+<?php if ($result && $result->num_rows > 0): ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="card">
+            <h3><?php echo htmlspecialchars($row['company_name']); ?> Interview</h3>
+            <div class="interview-detail">
+                <p><strong>Interview Date & Time:</strong> <?php echo date('d-m-Y H:i', strtotime($row['interview_at'])); ?></p>
+                <p><strong>Mode:</strong> <?php echo $row['mode']; ?></p>
+                <?php if ($row['mode'] == 'Offline'): ?>
+                    <p><strong>Venue:</strong> <?php echo htmlspecialchars($row['venue']); ?></p>
+                <?php endif; ?>
+                <p><strong>Status:</strong> <?php echo $row['status'] ? htmlspecialchars($row['status']) : 'Pending'; ?></p>
+            </div>
 
-                <!-- Only show the confirm button if the status is not already confirmed -->
-                <?php if ($row['status'] != 'Confirmed'): ?>
-                    <form action="viewintr.php" method="POST">
+            <div class="button-container">
+                <?php if ($row['status'] != 'Confirmed' && $row['status'] != 'Canceled'): ?>
+                    <form action="viewintr.php" method="POST" style="display:inline;">
                         <input type="hidden" name="interview_id" value="<?php echo $row['id']; ?>">
-                        <button type="submit" class="btn">Confirm Interview</button>
+                        <button type="submit" name="confirm_interview" class="btn confirm-btn">Confirm Interview</button>
                     </form>
-                <?php else: ?>
-                    <button class="btn" style="background-color: #d9534f; cursor: not-allowed;" disabled>Interview
-                        Confirmed</button>
+                    <form action="viewintr.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="interview_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" name="cancel_interview" class="btn cancel-btn">Cancel Interview</button>
+                    </form>
+                <?php elseif ($row['status'] == 'Confirmed'): ?>
+                    <button class="btn confirmed-btn" disabled>Interview Confirmed</button>
+                <?php elseif ($row['status'] == 'Canceled'): ?>
+                    <button class="btn canceled-btn" disabled>Interview Canceled</button>
                 <?php endif; ?>
             </div>
-        <?php endwhile; ?>
+        </div>
+    <?php endwhile; ?>
+
+
+        <!-- Pagination links -->
+        <div class="pagination-wrap">
+                <ul class="pagination">
+                    <!-- Previous page link -->
+                    <?php if ($page > 1): ?>
+                        <li><a href='viewintr.php?page=<?php echo $page - 1; ?>'>&lt;</a></li>
+                    <?php endif; ?>
+
+                    <!-- Page number links -->
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <li>
+                            <a href='viewintr.php?page=<?php echo $i; ?>' <?php if ($i == $page)
+                                   echo "class='active'"; ?>><?php echo $i; ?></a>
+                        </li>
+                    <?php endfor; ?>
+
+                    <!-- Next page link -->
+                    <?php if ($page < $total_pages): ?>
+                        <li><a href='viewintr.php?page=<?php echo $page + 1; ?>'>&gt;</a></li>
+                    <?php endif; ?>
+
+                    <li><a>Total Pages: <?php echo $total_pages; ?></a></li>
+                </ul>
+            </div>
     <?php else: ?>
         <div class="alert alert-info">You don't have any upcoming interview requests.</div>
     <?php endif; ?>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Show alert box if it exists
+        $(".alert-box").fadeIn().delay(3000).fadeOut('slow');
+    });
+</script>
             <footer class="text-right">
                 <p>Copyright &copy; 2024 Hmc-PMS | Developed by
                     <a href="#" target="_parent">Hmc FutureTechnologies</a>
