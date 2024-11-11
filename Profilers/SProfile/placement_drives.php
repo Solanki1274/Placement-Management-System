@@ -137,6 +137,9 @@ $total_pages = ceil($total_records / $num_rec_per_page);
                         <a href="preferences.php"><i class="fa fa-sliders fa-fw"></i>Preferences</a>
                     </li>
                     <li>
+              <a href="viewintr.php"><i class="fa fa-eject fa-fw"></i>View Interview Request</a>
+            </li>
+                    <li>
                         <a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a>
                     </li>
                 </ul>
