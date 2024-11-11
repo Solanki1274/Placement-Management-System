@@ -22,7 +22,7 @@ if (!isset($_SESSION["username"])) {
 $servername = "localhost"; 
 $username_db = "harsh";
 $password_db = "harsh2005";
-$dbname = "placement";  // Update with your actual database name
+$dbname = "placement";  
 
 $conn = new mysqli($servername, $username_db, $password_db, $dbname);
 
@@ -35,7 +35,7 @@ if ($conn->connect_error) {
 $username = $_SESSION["username"];
 
 // Fetch the approval status
-$sql = "SELECT Approve FROM slogin WHERE USN = ?";  // Update column name as needed
+$sql = "SELECT Approved FROM slogin WHERE USN = ?";  // Update column name as needed
 $stmt = $conn->prepare($sql);
 
 if ($stmt) {
@@ -47,7 +47,7 @@ if ($stmt) {
         $row = $result->fetch_assoc();
 
         // Check if the account is approved
-        if ($row["Approve"] != 1) {
+        if ($row["Approved"] != 1) {
             // User is not approved, show a modal message
             echo '
             <div id="modal" class="modal">
@@ -134,9 +134,7 @@ if ($stmt) {
     }
 
     $stmt->close();
-} else {
-    echo "<p style='color: red; text-align: center;'>Error: Could not prepare statement.</p>";
-    exit();
+
 }
 
 $conn->close();

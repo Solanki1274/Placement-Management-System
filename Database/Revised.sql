@@ -157,21 +157,7 @@ CREATE TABLE IF NOT EXISTS `basicdetails` (
 -- Dumping data for table `basicdetails`
 --
 
-INSERT INTO `basicdetails` (`Id`, `FirstName`, `LastName`, `USN`, `Mobile`, `Email`, `DOB`, `Sem`, `Branch`, `SSLC`, `PU/Dip`, `BE`, `Backlogs`, `HofBacklogs`, `DetainYears`, `Approve`, `ApprovalDate`) VALUES
-(1, 'veda', 'kumar', '1cg13is400', 11111, 'v@gmil.comk', '2015-06-09', 1, 'ISE', 70, 70, 70, 0, 0, 0, 1, '0000-00-00'),
-(2, 'vastala', 'hs', '1cg13cs400', 22222, 'vhs@gmil.com', '1996-03-08', 2, 'CSE', 75, 75, 70, 0, 0, 0, 1, '0000-00-00'),
-(3, 'ragini', 'mn', '1cg12is001', 33333, 'r@gmail.com', '1991-01-28', 6, 'ISE', 55, 55, 55, 0, 0, 0, 1, '0000-00-00'),
-(4, 'Punith', 'raj kumar', '1cg12cs002', 66666, 'p@gmail.com', '1991-02-13', 8, 'CSE', 85, 85, 85, 0, 0, 0, 0, '0000-00-00'),
-(5, 'Manvith', 'kumar', '1cg12cv001', 7777, 'mk@gmail.com', '1998-05-31', 7, 'CVE', 99, 99, 99, 0, 0, 0, 0, '0000-00-00'),
-(6, 'Harsha', 'M S', '1cg12ee001', 88888, 'h@gmail.com', '1999-01-04', 8, 'EEE', 99, 99, 99, 0, 0, 0, 0, '0000-00-00'),
-(7, 'Tejaswini', 'T L', '1cg12cv002', 99999, 't@gmil.com', '1997-08-13', 4, 'CVE', 65, 65, 65, 0, 0, 0, 0, '0000-00-00'),
-(8, 'Ashraf', 'Unissa', '1cg12ee005', 10000, 'au@gmail.com', '1992-10-23', 4, 'EEE', 55, 55, 55, 0, 0, 0, 0, '0000-00-00'),
-(9, 'Roja', 'Bai', '1cg12is009', 20000, 'rb@gmail.com', '1997-04-28', 4, 'ISE', 66, 63, 62, 0, 0, 0, 1, '2015-07-23'),
-(10, 'Yogesh', 'B L', '1cg12cs031', 40000, 'y@gmail.com', '2000-06-13', 5, 'CSE', 41, 45, 45, 0, 0, 0, 0, '0000-00-00'),
-(11, 'rahul', 'khanna', '1cg13is401', 2147483647, 'rr@gmail.com', '2015-07-02', 4, 'ise', 77, 66, 77, 0, 0, 0, 1, '0000-00-00'),
-(12, 'Vishruth', 'Harithsa', '1cg12is094', 9880796862, 'harithsa@aol.com', '1994-10-22', 6, 'ISE', 91, 70, 50, 5, 0, 1, 1, '2015-08-18'),
-(13, 'Neil', 'Armstrong', '1cg12is000', 2147483647, 'armstrong@neil.com', '2015-07-23', 7, 'ISE', 100, 100, 100, 0, 0, 0, 1, '2015-07-23'),
-(14, 'Vishruth', 'Harithsa', '1cg12is011', 9880796862, 'harithsa@aol.com', '2015-08-21', 6, 'ISE', 40, 70, 50, 5, 0, 1, 0, '0000-00-00');
+
 
 -- --------------------------------------------------------
 
@@ -197,19 +183,7 @@ CREATE TABLE IF NOT EXISTS `updatedrive` (
 -- Dumping data for table `updatedrive`
 --
 
-INSERT INTO `updatedrive` (`USN`, `Name`, `CompanyName`, `Date`, `Attendence`, `WT`, `GD`, `Techical`, `Placed`) VALUES
-('1cg13is400', 'Veda', 'Haritha Tech', '2015-06-26', 1, 1, 1, 1, 1),
-('1cg13cs400', 'Vastala', 'HP', '2013-08-19', 1, 1, 1, 1, 1),
-('1cg12cs002', 'Punith', 'IBM', '2015-05-12', 1, 1, 1, 1, 1),
-('1cg12cv001', 'Manvith', 'Infosis', '2015-01-10', 1, 1, 1, 1, 1),
-('1cg12ee001', 'Harsha', 'Intel', '2013-09-08', 1, 1, 1, 1, 1),
-('1cg12ee005', 'Ashraf', 'Microsoft company', '2014-12-09', 1, 1, 1, 1, 1),
-('1cg12is009', 'Roja', 'Skype', '2014-06-10', 1, 1, 1, 1, 1),
-('1cg12cs031', 'Yogesh', 'Tata Consultency Services', '2015-11-24', 1, 1, 1, 1, 1),
-('1cg12is001', 'Ragini', 'VTECK', '2013-03-24', 1, 1, 1, 1, 1),
-('1cg12cv002', 'Tesjaswini', 'WDS', '2014-09-30', 1, 1, 1, 1, 1),
-('1cg12cs002', 'punith', 'yy', '2015-07-04', 1, 1, 1, 0, 0),
-('1cg12is094', 'Vishruth Harithsa', 'Apple', '2015-07-23', 1, 1, 1, 1, 1);
+
 
 --
 -- Constraints for dumped tables
@@ -249,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `hlogin` (
 --
 
 INSERT INTO `hlogin` (`Id`, `Name`, `Username`, `Password`, `Email`, `Question`, `Answer`, `Branch`) VALUES
-(1, 'Nagaraj P', 'Nagaraj', '123456', 'fastnag@gmail.com', 'What is your fav spot?', 'Bangalore', 'ISE');
+(1, 'Ajay Rathod', 'ajay', 'ajay@123', 'fastnag@gmail.com', 'What is your fav spot?', 'Bangalore', 'CSE');
 
 -- --------------------------------------------------------
 
@@ -274,8 +248,18 @@ CREATE TABLE IF NOT EXISTS `plogin` (
 -- Dumping data for table `plogin`
 --
 
-INSERT INTO `plogin` (`Id`, `Name`, `Username`, `Password`, `Email`, `Question`, `Answer`) VALUES
-(1, 'Rohini', 'rohini', 'rohini', 'rh@gmail.com', 'What is your fav spot?', 'mangalore');
+INSERT INTO `plogin` (Name, Username, Password, Email, Question, Answer, Approve) VALUES
+('Tech Solutions', 'johndoe', 'password123', 'johndoe@techsolutions.com', 'What is your favorite color?', 'Blue', 1),
+('Innovatech', 'janesmith', 'securePass456', 'janesmith@innovatech.com', 'What was the name of your first pet?', 'Buddy', 1),
+('Global Soft', 'markjohnson', 'welcome789', 'markjohnson@globalsoft.com', 'What is your mother’s maiden name?', 'Brown', 1),
+('Bright Vision', 'lisaray', 'passWord321', 'lisaray@brightvision.com', 'What was the name of your first school?', 'Greenwood', 1),
+('CyberPath', 'pauladams', 'techPass999', 'pauladams@cyberpath.com', 'What is your favorite book?', '1984', 0),
+('NextGen Tech', 'emilyclark', 'newUser2024', 'emilyclark@nextgensolutions.com', 'What is your favorite movie?', 'Inception', 1),
+('TechWave', 'davidking', 'passTest098', 'davidking@techwave.com', 'What is the name of your hometown?', 'Springfield', 1),
+('Infinitum', 'rachelgreen', 'myPassword456', 'rachelgreen@infinitum.com', 'What is your father’s middle name?', 'Edward', 0),
+('Nexis Corp', 'michaelscott', 'secretPass789', 'michaelscott@nexiscorp.com', 'What is the name of your best friend?', 'Jim', 1),
+('Optimus Group', 'sarahwhite', 'tryLogin2023', 'sarahwhite@optimusgroup.com', 'What was the make of your first car?', 'Toyota', 1);
+
 
 -- --------------------------------------------------------
 
@@ -324,16 +308,23 @@ CREATE TABLE IF NOT EXISTS `slogin` (
 -- Dumping data for table `slogin`
 --
 
-INSERT INTO `slogin` (`id`, `Name`, `USN`, `PASSWORD`, `Email`, `Question`, `Answer`) VALUES
-(1, 'veda', '1cg13is401', '123', 'veda', 'What is your fav spot?', 'circket'),
-(2, 'Veda', '1cg12is096', 'veda', 'v@gmil.com', 'what is your fav spot?', 'mysore'),
-(3, 'rama', '1cg12cs001', 'rama', 'rama@gmail.com', 'What is your fav dish?', 'chicken'),
-(4, 'Vishruth Harithsa', '1cg12is094', 'CUTESTAR22', 'har', 'What is your nickname?', ''),
-(5, 'Armstrong', '1cg12is000', 'asdfg', 'armstrong@neil.com', 'What is your fav spot?', 'New York'),
-(8, 'Harry', '1cg12is007', 'asdfg', 'asdfg@gmail.com', 'What is your fav spot?', 'Manali'),
-(9, '', '', '', '', '', ''),
-(10, 'Harithsa', '1cg12is009', 'qwerty', 'harithsa@aol.com', 'What is your nickname?', 'Gunda'),
-(11, 'Vishruth Harithsa', '1cg12is011', 'qwerty', 'astroman225@gmail.com', 'What is your fav spot?', 'Manali');
+INSERT INTO `slogin` (`Name`, `USN`, `PASSWORD`, `Email`, `Question`, `Answer`) VALUES
+('Aman Kumar', '22CSE001', 'password123', 'aman.kumar@example.com', 'What is your mother’s maiden name?', 'Singh'),
+('Riya Sharma', '22ISE002', 'hello1234', 'riya.sharma@example.com', 'What is your first pet’s name?', 'Bruno'),
+('Arjun Verma', '22ECE003', 'securepass', 'arjun.verma@example.com', 'What is your favorite teacher’s name?', 'Mrs. Mehta'),
+('Sneha Roy', '22CVE004', 'mypassword', 'sneha.roy@example.com', 'What is the name of the street you grew up on?', 'MG Road'),
+('Vikash Gupta', '22CSE005', 'pass4567', 'vikash.gupta@example.com', 'What is your favorite color?', 'Blue'),
+('Anjali Mehta', '22ISE006', 'testpass89', 'anjali.mehta@example.com', 'What was the model of your first car?', 'Swift'),
+('Rahul Singh', '22ECE007', 'simplepass', 'rahul.singh@example.com', 'What is your favorite book?', 'The Alchemist'),
+('Priya Jadhav', '22CVE008', 'password01', 'priya.jadhav@example.com', 'What was the name of your elementary school?', 'St. Xavier’s'),
+('Karan Patel', '22CSE009', 'letmein123', 'karan.patel@example.com', 'What is your favorite sports team?', 'Manchester United'),
+('Shivani Rana', '22ISE010', 'test1234', 'shivani.rana@example.com', 'In what city did your parents meet?', 'Mumbai');
+
+
+---altering slogin adding a colum----
+ALTER TABLE `slogin`
+ADD COLUMN `Approved` TINYINT(1) DEFAULT 0 AFTER `Answer`;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -19,18 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $application_id = $_POST['application_id'];
     $interview_date = $_POST['interview_date'];
     $interview_time = $_POST['interview_time'];
-    $mode = $_POST['mode'];
+    $mode = ucfirst(strtolower($_POST['mode'])); // Capitalize mode to match ENUM values
     $venue = $_POST['venue'];
 
     // Input validation
-    if (empty($interview_date) || empty($interview_time) || empty($mode) || ($mode == "offline" && empty($venue))) {
+    if (empty($interview_date) || empty($interview_time) || empty($mode) || ($mode == "Offline" && empty($venue))) {
         $_SESSION['alert'] = "Please fill in all required fields for scheduling the interview.";
         header("Location: scheduleinterview.php?application_id=$application_id");
         exit();
     }
 
     // Fetch application details
-    $app_query = "SELECT usn, company_name FROM applications WHERE id = ?";
+    $app_query = "SELECT USN, company_name FROM applications WHERE id = ?";
     $stmt = $connect->prepare($app_query);
     if (!$stmt) {
         die("Preparation failed: " . $connect->error);
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Preparation failed: " . $connect->error);
     }
 
-    $stmt->bind_param("sssss", $application['company_name'], $application['usn'], $interview_at, $mode, $venue);
+    $stmt->bind_param("sssss", $application['company_name'], $application['USN'], $interview_at, $mode, $venue);
 
     if ($stmt->execute()) {
         $_SESSION['success'] = "Interview scheduled successfully.";
@@ -73,7 +73,6 @@ if ($stmt) {
 }
 $connect->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,8 +147,9 @@ $connect->close();
         <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
     <?php endif; ?>
 
+    <!-- Interview Scheduling Form -->
     <form action="scheduleinterview.php" method="POST">
-        <input type="hidden" name="application_id" value="<?php echo htmlspecialchars($application_id); ?>">
+        <input type="hidden" name="application_id" value="<?php echo htmlspecialchars($_GET['application_id']); ?>">
 
         <label for="interview_date">Interview Date:</label>
         <input type="date" name="interview_date" required>

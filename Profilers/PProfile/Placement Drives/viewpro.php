@@ -355,7 +355,7 @@ $conn->close();
                             </div>
 
                             <div class="info-item">
-                                <strong>Date of Birth:</strong>
+                                <strong>Approval Date</strong>
                                 <p>
                                     <?php
                                     // Assuming $profile['DOB'] is in `YYYY-MM-DD` format

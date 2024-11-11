@@ -112,7 +112,7 @@ if (isset($_POST['submit']) || isset($_POST['update'])) {
                 }
 
                 if ($stmt->execute()) {
-                    echo "<center>Data inserted successfully...!!</center>";
+                    echo "<center>Data inserted successfully...!!Once YOu CAn Appy After It Is Approved By Administrating Staff!!</center>";
                 } else {
                     echo "<center>Failed to insert data</center>";
                 }

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($id)) {
             $stmt->close(); 
 
             // Prepare and bind for slogin table
-            $sql_slogin = "UPDATE slogin SET Approve=? WHERE USN=?";
+            $sql_slogin = "UPDATE slogin SET Approved=? WHERE USN=?";
             $stmt_slogin = $link->prepare($sql_slogin);
 
             if ($stmt_slogin) {
