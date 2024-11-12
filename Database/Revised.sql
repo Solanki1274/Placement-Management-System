@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `hlogin` (
 --
 
 INSERT INTO `hlogin` (`Id`, `Name`, `Username`, `Password`, `Email`, `Question`, `Answer`, `Branch`) VALUES
-(1, 'Ajay Rathod', 'ajay', 'ajay@123', 'fastnag@gmail.com', 'What is your fav spot?', 'Bangalore', 'CSE');
+(1, 'Ajay Rathod', 'ajay', 'Ajay@123', 'fastnag@gmail.com', 'What is your fav spot?', 'Bangalore', 'CSE');
 
 -- --------------------------------------------------------
 
