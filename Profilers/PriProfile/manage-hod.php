@@ -61,10 +61,10 @@
           <li><a href="login.php" ><i class="fa fa-home fa-fw" ></i>Dashboard</a></li>
           <li><a href="Students Eligibility.php"><i class="fa fa-bar-chart fa-fw"></i>Check Students Eligibility</a>
           </li>
-          <li><a href="queries.php"  class="active"><i class="fa fa-database fa-fw"></i>Queries</a></li>
+          <li><a href="queries.php"  ><i class="fa fa-database fa-fw"></i>Queries</a></li>
           <li><a href="manage-users.php"><i class="fa fa-users fa-fw"></i>Student Details</a></li>
-          <li><a href="manage-company.php"><i class="fa fa-users fa-fw"></i>Manage Company</a></li>
-          <li><a href="manage-hod.php"><i class="fa fa-users fa-fw"></i>Manage HOD</a></li>
+          <li><a href="manage-company.php" ><i class="fa fa-users fa-fw"></i>Manage Company</a></li>
+          <li><a href="manage-hod.php" class="active"><i class="fa fa-users fa-fw"></i>Manage HOD</a></li>
           <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
         </ul>
       </nav>
@@ -83,17 +83,7 @@
             </nav> 
           </div>
         </div>	<center>	
-        <div class="templatemo-content-widget white-bg">
-          	<ul>
-					<div><li><h3>Student Queries : &nbsp&nbsp&nbsp <a href="studsearch.php" class="templatemo-blue-button">Click Here</a></h3></li></div>
-					<br><br><br>
-					<div>
-					<li><h3>Company Queries : &nbsp <a href="comsearch.php" class="templatemo-blue-button">Click Here</a></h3></li></div>
-					<br><br><br>
-					<li><h3>Drive Queries : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="search.php" class="templatemo-blue-button">Click Here</a></h3></li>
-					</ul>
-                  </div>
-                  </center>
+       
           <footer class="text-right">
             <p>Copyright &copy; 2024 Hmc-PMS
             | Developed by <a href="#" target="_parent">Hmc FutureTechnologies</a></p>

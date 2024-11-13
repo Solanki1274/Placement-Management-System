@@ -55,15 +55,18 @@
         <div class="mobile-menu-icon">
             <i class="fa fa-bars"></i>
           </div>
-        <nav class="templatemo-left-nav">          
-          <ul>
-          <li><a href="index.php" ><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
-            <li><a href="Students Eligibility.php" class="active"><i class="fa fa-bar-chart fa-fw"></i> Eligibility Criteria</a></li>
-            <li><a href="queries.php"><i class="fa fa-database fa-fw"></i>Queries</a></li>
-            <li><a href="manage-users.php" ><i class="fa fa-users fa-fw"></i>Student Details</a></li>
-            <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
-          </ul>  
-        </nav>
+          <nav class="templatemo-left-nav">
+        <ul>
+          <li><a href="login.php" ><i class="fa fa-home fa-fw" class="active"></i>Dashboard</a></li>
+          <li><a href="Students Eligibility.php" class="active"><i class="fa fa-bar-chart fa-fw"></i>Check Students Eligibility</a>
+          </li>
+          <li><a href="queries.php"><i class="fa fa-database fa-fw"></i>Queries</a></li>
+          <li><a href="manage-users.php"><i class="fa fa-users fa-fw"></i>Student Details</a></li>
+          <li><a href="manage-company.php"><i class="fa fa-users fa-fw"></i>Manage Company</a></li>
+          <li><a href="manage-hod.php"><i class="fa fa-users fa-fw"></i>Manage HOD</a></li>
+          <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+        </ul>
+      </nav>
       </div>
       <!-- Main content --> 
       <div class="templatemo-content col-1 light-gray-bg">

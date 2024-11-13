@@ -102,6 +102,7 @@ try {
                                 <td>Current Backlogs</td>
                                 <td>History of Backlogs</td>
                                 <td>Detain Years</td>
+                                <td>Approve?</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,6 +122,9 @@ try {
                                     <td><?php echo htmlspecialchars($student['Backlogs']); ?></td>
                                     <td><?php echo htmlspecialchars($student['HofBacklogs']); ?></td>
                                     <td><?php echo htmlspecialchars($student['DetainYears']); ?></td>
+                                    <td><?php echo htmlspecialchars($student['Approve']); ?></td>
+                                    
+                                    
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

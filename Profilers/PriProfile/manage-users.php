@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["priusername"])) {
-    echo "Welcome, " . $_SESSION['priusername'] . "!";
+
 } else {
     header("location: index.php");
 }
@@ -11,16 +11,20 @@ if (isset($_SESSION["priusername"])) {
 <html lang="en">
 <head>
     <!--favicon-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/icon">
-    <link rel="icon" href="favicon.ico" type="image/icon">
+        <link rel="shortcut icon" href="favicon.ico" type="image/icon">
+        <link rel="icon" href="favicon.ico" type="image/icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Principal - Student Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <title>Student Details</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">   
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/templatemo-style.css" rel="stylesheet">
-</head>
+    <link href="css/templatemo-style.css" rel="stylesheet">   
+ 
+  </head>
 <body>
 <div class="templatemo-flex-row">
     <div class="templatemo-sidebar">
@@ -39,14 +43,17 @@ if (isset($_SESSION["priusername"])) {
             </div>
         </form>
         <nav class="templatemo-left-nav">
-            <ul>
-                <li><a href="index.php"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
-                <li><a href="Students Eligibility.php"><i class="fa fa-bar-chart fa-fw"></i>Check Students Eligibility</a></li>
-                <li><a href="queries.php"><i class="fa fa-database fa-fw"></i>Queries</a></li>
-                <li><a href="manage-users.php" class="active"><i class="fa fa-users fa-fw"></i>Student Details</a></li>
-                <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
-            </ul>
-        </nav>
+        <ul>
+          <li><a href="login.php" ><i class="fa fa-home fa-fw" ></i>Dashboard</a></li>
+          <li><a href="Students Eligibility.php" ><i class="fa fa-bar-chart fa-fw"></i>Check Students Eligibility</a>
+          </li>
+          <li><a href="queries.php"><i class="fa fa-database fa-fw"></i>Queries</a></li>
+          <li><a href="manage-users.php" class="active"><i class="fa fa-users fa-fw"></i>Student Details</a></li>
+          <li><a href="manage-company.php"><i class="fa fa-users fa-fw"></i>Manage Company</a></li>
+          <li><a href="manage-hod.php"><i class="fa fa-users fa-fw"></i>Manage HOD</a></li>
+          <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+        </ul>
+      </nav>
     </div>
 
     <div class="templatemo-content col-1 light-gray-bg">
@@ -168,12 +175,6 @@ if (isset($_SESSION["priusername"])) {
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/templatemo-script.js"></script>
-<script>
-    $(document).ready(function () {
-        var imageUrl = $('img.content-bg-img').attr('src');
-        $('.templatemo-content-img-bg').css('background-image', 'url(' + imageUrl + ')');
-        $('img.content-bg-img').hide();
-    });
-</script>
+
 </body>
 </html>
