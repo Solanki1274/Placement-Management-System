@@ -23,12 +23,28 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-style.css" rel="stylesheet">   
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style>
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container a {
+            display: block;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
   </head>
   <body>  
     <!-- Left column -->
@@ -83,7 +99,12 @@
             </nav> 
           </div>
         </div>	<center>	
-       
+        <div class="container">
+                    <h2>Manage HOD</h2>
+                    <a href="insert_hod.php">Insert HOD Details</a>
+                    <a href="view-hod.php">View Hod list & Manage</a>
+                    
+                </div>
           <footer class="text-right">
             <p>Copyright &copy; 2024 Hmc-PMS
             | Developed by <a href="#" target="_parent">Hmc FutureTechnologies</a></p>

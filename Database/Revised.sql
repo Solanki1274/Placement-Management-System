@@ -207,7 +207,8 @@ ALTER TABLE `updatedrive`
 
 CREATE TABLE IF NOT EXISTS `hlogin` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(25) NOT NULL,
+  `FirstName` varchar(25) NOT NULL,
+  `LastName` varchar(25) NOT NULL,
   `Username` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,

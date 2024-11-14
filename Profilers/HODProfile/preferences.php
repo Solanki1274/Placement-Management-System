@@ -20,40 +20,40 @@ if (!isset($_SESSION['husername'])) {
     die("You must be logged in to view this page <a href='index.php'>Click here</a>");
 }
 
-// Initialize variables with empty strings
+// Initialize variables
 $newFirstName = '';
 $newLastName = '';
 $newEmail = '';
+$newUsername = '';
 $successMessage = '';
 $errorMessage = '';
 $duplicateMessage = '';
 
 // Fetch existing user details to show in the form
 $username = $_SESSION['husername'];
-$result = $conn->query("SELECT Name, Email FROM hlogin WHERE Username='$username'");
+$result = $conn->query("SELECT Firstname, Lastname, Email, Username FROM hlogin WHERE Username='$username'");
 $userDetails = $result->fetch_assoc();
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Use isset to prevent undefined index warnings
     $newFirstName = isset($_POST['inputFirstName']) ? $_POST['inputFirstName'] : '';
     $newLastName = isset($_POST['inputLastName']) ? $_POST['inputLastName'] : '';
     $newEmail = isset($_POST['inputEmail']) ? $_POST['inputEmail'] : '';
-
-    // Combine first name and last name
-    $newName = $newFirstName . ' ' . $newLastName;
+    $newUsername = isset($_POST['inputUsername']) ? $_POST['inputUsername'] : '';
 
     // Check if the new values are the same as the existing values
-    if ($newName === $userDetails['Name'] && $newEmail === $userDetails['Email']) {
+    if ($newFirstName === $userDetails['Firstname'] && $newLastName === $userDetails['Lastname'] &&
+        $newEmail === $userDetails['Email'] && $newUsername === $userDetails['Username']) {
         $duplicateMessage = "No changes made. Data is already up to date!";
     } else {
         // Prepare the SQL update statement
-        $updateSql = "UPDATE hlogin SET Name=?, Email=? WHERE Username=?";
+        $updateSql = "UPDATE hlogin SET Firstname=?, Lastname=?, Email=?, Username=? WHERE Username=?";
         $stmt = $conn->prepare($updateSql);
-        $stmt->bind_param("sss", $newName, $newEmail, $username);
+        $stmt->bind_param("sssss", $newFirstName, $newLastName, $newEmail, $newUsername, $username);
 
         if ($stmt->execute()) {
             $successMessage = "Details updated successfully!";
+            $_SESSION['husername'] = $newUsername; // Update session username if changed
         } else {
             $errorMessage = "Error updating details: " . $stmt->error;
         }
@@ -65,6 +65,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+    <script>
+        // JavaScript function to show alert message if update is successful
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+<?php if (!empty($successMessage)) : ?>
+    <script>
+        showAlert("<?php echo $successMessage; ?>");
+    </script>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -140,14 +159,14 @@ $conn->close();
                             <div class="col-lg-6 col-md-6 form-group">                  
                                 <label for="inputLastName">Last Name</label>
                                 <input type="text" class="form-control" id="inputLastName" name="inputLastName" 
-                                       placeholder="Smith" value="<?php echo isset($userDetails['Name']) ? explode(' ', $userDetails['Name'])[1] : ''; ?>" required>                  
+                                       placeholder="Rathod" required>                  
                             </div> 
                         </div>
                         <div class="row form-group">
                             <div class="col-lg-6 col-md-6 form-group">                  
                                 <label for="inputUsername">Username</label>
                                 <input type="text" class="form-control" id="inputUsername" name="inputUsername" 
-                                       placeholder="Admin" value="<?php echo htmlspecialchars($_SESSION['husername']); ?>" readonly>                  
+                                       placeholder="Admin" value="<?php echo htmlspecialchars($_SESSION['husername']); ?>" required>                  
                             </div>
                             <div class="col-lg-6 col-md-6 form-group">                  
                                 <label for="inputEmail">Email</label>
@@ -165,7 +184,7 @@ $conn->close();
 
                         <div class="row form-group">
                             <div class="col-lg-12">
-                                <label class="control-label templatemo-block">File Input</label> 
+                                <label class="control-label templatemo-block">Profile Photo</label> 
                                 <input type="file" name="fileToUpload" id="fileToUpload" class="filestyle" data-buttonName="btn-primary" data-buttonBefore="true" data-icon="false">
                                 <p>Maximum upload size is 5 MB.</p>                  
                             </div>
