@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['priusername'])) {
+if (!isset($_SESSION['husername'])) {
     header("location: index.php");
     exit();
 }
@@ -19,13 +19,13 @@ $message = "";
 // Delete company logic
 if (isset($_POST['delete'])) {
     // Get user inputs
-    if (isset($_POST['companyname'])) {
-        $companyname = $connect->real_escape_string($_POST['companyname']);
+    if (isset($_POST['USN'])) {
+        $companyname = $connect->real_escape_string($_POST['USN']);
 
-        // SQL queries to delete records from the `addpdrive`, `updatedrive`, and `plogin` tables based on `CompanyName`
-        $deleteQuery1 = "DELETE FROM addpdrive WHERE CompanyName = ?";
-        $deleteQuery2 = "DELETE FROM updatedrive WHERE CompanyName = ?";
-        $deleteQuery3 = "DELETE FROM plogin WHERE Name = ?";
+       
+        $deleteQuery1 = "DELETE FROM slogin WHERE USN = ?";
+        $deleteQuery2 = "DELETE FROM interviews WHERE USN = ?";
+        $deleteQuery3 = "DELETE FROM basicdetails WHERE USN = ?";
 
         // Prepare and execute the delete queries
         if ($stmt1 = $connect->prepare($deleteQuery1)) {
@@ -58,7 +58,7 @@ if (isset($_POST['delete'])) {
             $connect->close();
 
             // Redirect with success message in query parameter
-            header("Location: delete_company.php?success=1");
+            header("Location: del-student.php?success=1");
             exit();
         } else {
             // Close statements
@@ -68,11 +68,11 @@ if (isset($_POST['delete'])) {
             $connect->close();
 
             // Redirect with error message
-            header("Location: delete_company.php?error=1");
+            header("Location: del-student.php?error=1");
             exit();
         }
     } else {
-        header("Location: delete_company.php?error=1");
+        header("Location: del-student.php?error=1");
         exit();
     }
 }
@@ -147,15 +147,15 @@ if (isset($_POST['delete'])) {
     <h2>Delete Company</h2>
     <form method="POST" action="">
         <div class="form-group">
-            <label for="companyname">Username</label>
-            <input type="text" name="companyname" id="username" required>
+            <label for="companyname">USN</label>
+            <input type="text" name="USN" id="USN" required>
         </div>
   <div class="form-group">
-            <label for="companyname">Company Name</label>
-            <input type="text" name="companyname" id="companyname" required>
+            <label for="companyname">Student Name</label>
+            <input type="text" name="studentname" id="studentname" required>
         </div>
         <div class="button-group">
-            <button type="submit" name="delete" onclick="return confirmDelete()">Delete Company</button>
+            <button type="submit" name="delete" onclick="return confirmDelete()">Delete Student</button>
             <button type="reset">Reset</button>
         </div>
     </form>

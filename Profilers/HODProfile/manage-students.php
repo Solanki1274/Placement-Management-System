@@ -97,9 +97,9 @@
           </div>
         </div>	<center>	
         <div class="container">
-                    <h2>Manage HOD</h2>
+                    <h2>Manage Student</h2>
                     <a href="approve2.php">Approve Details</a>
-                    <a href="view-hod.php">Delete Student </a>
+                    <a href="del-student.php">Delete Student </a>
                     
                 </div>
           <footer class="text-right">
