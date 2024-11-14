@@ -33,6 +33,7 @@ if (isset($_SESSION['priusername'])) {
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .container a {
             display: block;
             padding: 10px 20px;
@@ -43,6 +44,7 @@ if (isset($_SESSION['priusername'])) {
             border-radius: 5px;
             font-size: 16px;
         }
+
         .container a:hover {
             background-color: #0056b3;
         }
@@ -108,8 +110,11 @@ if (isset($_SESSION['priusername'])) {
 
                 <div class="container">
                     <h2>Manage Company</h2>
+                    <a href="approve.php">Approve Company</a>
                     <a href="insert_company.php">Insert Company</a>
+                    <a href="view-company.php">View Company`s</a>
                     <a href="delete_company.php">Delete Company</a>
+
                 </div>
                 <footer class="text-right">
                     <p>Copyright &copy; 2024 Hmc-PMS

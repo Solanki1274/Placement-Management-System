@@ -1,10 +1,79 @@
 <?php
+
 session_start();
 if (isset($_SESSION["priusername"])) {
 
-} else
-  header("location: index.php")
-    ?>
+} else {
+    header("location: index.php");
+}
+// Database connection
+$servername = "localhost";
+$username = "harsh";
+$password = "harsh2005";
+$dbname = "placement";
+$connect = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($connect->connect_error) {
+    die("Connection failed: " . $connect->connect_error);
+}
+
+// Define a function to fetch and display counts based on specific criteria
+function fetchCount($conn, $query) {
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    $stmt->close();
+    return $data;
+}
+
+// Query and display results
+$query1 = "SELECT COUNT(DISTINCT CompanyName) as count FROM addpdrive WHERE PVenue LIKE '%CIT%' AND YEAR(Date) = YEAR(NOW())";
+$data1 = fetchCount($connect, $query1);
+
+$query2 = "SELECT COUNT(Attendence) as count FROM updatedrive WHERE Attendence = 1 AND YEAR(Date) = YEAR(NOW())";
+$data2 = fetchCount($connect, $query2);
+
+$query3 = "SELECT COUNT(Placed) as count FROM updatedrive WHERE Placed = 1 AND YEAR(Date) = YEAR(NOW())";
+$data3 = fetchCount($connect, $query3);
+
+// Get total students, companies, and HODs from the existing database
+$total_students = mysqli_fetch_assoc(mysqli_query($connect, "SELECT COUNT(*) AS total FROM basicdetails"))['total'];
+$total_companies = mysqli_fetch_assoc(mysqli_query($connect, "SELECT COUNT(*) AS total FROM plogin"))['total'];
+$total_hods = mysqli_fetch_assoc(mysqli_query($connect, "SELECT COUNT(*) AS total FROM hlogin"))['total'];
+
+$interview_query = "SELECT i.Name AS company_name, i.USN, i.interview_at, i.mode, i.venue
+                    FROM interviews i
+                    INNER JOIN basicdetails b ON i.USN = b.USN
+                    WHERE i.interview_at > NOW()
+                    ORDER BY i.interview_at ASC";
+
+$interviews_result = $connect->query($interview_query);
+
+// Check if the query failed
+if (!$interviews_result) {
+    // Output the error message from MySQL
+    die('Error in query: ' . $connect->error);
+}
+
+function fetchUpcomingDrives($conn)
+{
+    $query = "SELECT * FROM addpdrive WHERE Date > NOW() ORDER BY Date ASC LIMIT 5";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        return $result;
+    } else {
+        return null;
+    }
+}
+
+// Fetch upcoming drives
+$upcomingDrives = fetchUpcomingDrives($connect);
+// Close connection
+$connect->close();
+?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -22,22 +91,70 @@ if (isset($_SESSION["priusername"])) {
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-style.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- <style>
-  body {
-    background-image: url("./images/bg.jpg");
-    background-size: cover; /* This makes the background image cover the entire body */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-position: center; /* Centers the image */
-}
-
-</style> -->
+    <style>
+       
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .card-body {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .card-footer {
+            background-color: #f1f1f1;
+        }
+        .stat-card {
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            padding: 30px;
+        }
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .card-container .card {
+            flex: 1;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        .card-container .card:last-child {
+            margin-right: 0;
+        }
+        .table th {
+            background-color: #0d6efd;
+            color: white;
+        }
+        .btn-custom {
+            background-color: #0d6efd;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .upcoming-interviews {
+            margin-top: 30px;
+        }
+    </style>
   </head>
 
   <body>
@@ -100,182 +217,135 @@ echo "<h1>" . $Welcome . "<br>" . $_SESSION['priusername'] . "</h1>";
           </nav>
         </div>
       </div>
-      <div class="templatemo-content-container">
-        <div class="templatemo-flex-row flex-content-row">
-          <div class="templatemo-content-widget white-bg col-2">
-            <i class="fa fa-times"></i>
-            <div class="square"></div>
-            <h2 class="templatemo-inline-block">Welcome to CIT-PMS</h2>
-            <hr>
-            <p>There is a worth for everything so do logging in here. The Use of this is, You can View Student details,
-              Check their Eligibility Criteria and U cvan look up drive details</p>
-            <p><a href="Students Eligibility.php">Check Students Eligibility</a></p>
+      <div class="container mt-5">
+        <h1 class="mb-4 text-center">Admin Dashboard</h1>
 
-            <p><a href="manage-users.php">Student Details</a></p>
-            <p><a href="queries.php">Search any Details about Drives, Company and a Student</a></p>
-          </div>
-          <div class="templatemo-content-widget white-bg col-1 text-center">
-            <i class="fa fa-times"></i>
-            <h2 class="text-uppercase">Best Project</h2>
-            <h3 class="text-uppercase margin-bottom-10">Design Project</h3>
-            <img src="images/bicycle.jpg" alt="Bicycle" class="img-circle img-thumbnail">
-          </div>
-          <div class="templatemo-content-widget white-bg col-1">
-            <i class="fa fa-times"></i>
-            <h2 class="text-uppercase">Progress Bar</h2>
-            <h3 class="text-uppercase">Progress</h3>
-            <hr>
-            <div class="progress">
-              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                aria-valuemax="100" style="width: 60%;"></div>
+        <!-- Stat Cards -->
+        <div class="card-container">
+            <div class="card stat-card" style="background-color: #28a745;">
+                <div class="card-body">
+                    <h5>Total Students</h5>
+                    <p><?php echo $total_students; ?></p>
+                </div>
             </div>
-            <div class="progress">
-              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                aria-valuemax="100" style="width: 50%;"></div>
+            <div class="card stat-card" style="background-color: #ffc107;">
+                <div class="card-body">
+                    <h5>Total Companies</h5>
+                    <p><?php echo $total_companies; ?></p>
+                </div>
             </div>
-            <div class="progress">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                aria-valuemax="100" style="width: 60%;"></div>
+            <div class="card stat-card" style="background-color: #17a2b8;">
+                <div class="card-body">
+                    <h5>Total HODs</h5>
+                    <p><?php echo $total_hods; ?></p>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="templatemo-flex-row flex-content-row">
-          <div class="col-1">
-            <div class="templatemo-content-widget orange-bg">
-              <i class="fa fa-times"></i>
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img class="media-object img-circle" src="images/sunset.jpg" alt="Sunset">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h2 class="media-heading text-uppercase">Updates</h2>
-                  <p>Get the Latest Update about Placement News
 
-                  </p>
+        <!-- Yearly Statistics -->
+        <div class="card-container">
+            <div class="card stat-card" style="background-color: #007bff;">
+                <div class="card-body">
+                    <h5>Companies on Campus This Year</h5>
+                    <p><?php echo $data1['count']; ?></p>
                 </div>
-              </div>
             </div>
-            <div class="templatemo-content-widget white-bg">
-              <i class="fa fa-times"></i>
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img class="media-object img-circle" src="images/sunset.jpg" alt="Sunset">
-                  </a>
+            <div class="card stat-card" style="background-color: #fd7e14;">
+                <div class="card-body">
+                    <h5>Students Attended This Year</h5>
+                    <p><?php echo $data2['count']; ?></p>
                 </div>
-                <div class="media-body">
-                  <h2 class="media-heading text-uppercase">Drive Results</h2>
-                  <p>Latest Drive Result Overview</p>
-                  <?php
-
-                  // Database connection
-                  $servername = "localhost";
-                  $username = "harsh";
-                  $password = "harsh2005";
-                  $dbname = "placement";
-                  $connect = new mysqli($servername, $username, $password, $dbname);
-
-                  // Check connection
-                  if ($connect->connect_error) {
-                    die("Connection failed: " . $connect->connect_error);
-                  }
-
-                  // Define a function to fetch and display counts based on specific criteria
-                  function fetchCount($conn, $query)
-                  {
-                    $stmt = $conn->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $data = $result->fetch_assoc();
-                    $stmt->close();
-                    return $data;
-                  }
-
-                  // Query and display results
-                  echo "<br><br><h3>";
-
-                  // 1. Count of distinct companies on campus this year
-                  $query1 = "SELECT COUNT(DISTINCT CompanyName) as count FROM addpdrive WHERE PVenue LIKE '%CIT%' AND YEAR(Date) = YEAR(NOW())";
-                  $data1 = fetchCount($connect, $query1);
-                  echo "Companies In Our Campus In This Year&nbsp:&nbsp" . $data1['count'];
-
-                  // 2. Count of students who attended this year
-                  $query2 = "SELECT COUNT(Attendence) as count FROM updatedrive WHERE Attendence = 1 AND YEAR(Date) = YEAR(NOW())";
-                  $data2 = fetchCount($connect, $query2);
-                  echo "<br><br>Number of Students Attended In This Year&nbsp:&nbsp" . $data2['count'];
-
-                  // 3. Count of students placed this year
-                  $query3 = "SELECT COUNT(Placed) as count FROM updatedrive WHERE Placed = 1 AND YEAR(Date) = YEAR(NOW())";
-                  $data3 = fetchCount($connect, $query3);
-                  echo "<br><br>Number of Students Placed In This Year&nbsp:&nbsp" . $data3['count'];
-
-                  echo "</h3>";
-
-                  // Close connection
-                  $connect->close();
-                  ?>
-
-
+            </div>
+            <div class="card stat-card" style="background-color: #dc3545;">
+                <div class="card-body">
+                    <h5>Students Placed This Year</h5>
+                    <p><?php echo $data3['count']; ?></p>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="col-1">
-            <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
-              <i class="fa fa-times"></i>
-              <div class="panel-heading templatemo-position-relative">
-                <h2 class="text-uppercase">HOD List</h2>
-              </div>
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered">
-                  <thead>
+        </div>
+       
+        <div class="templatemo-content-container">
+            <div class="templatemo-content-widget no-padding">
+            <h2>Upcoming Drives</h2>
+                <div class="panel panel-default table-responsive">
+                 
+                <?php if ($upcomingDrives): ?>
+                    <table class="table table-striped table-bordered templatemo-user-table">
+                <thead>
                     <tr>
-                      <td>No.</td>
-                      <td>First Name</td>
-                      <td>Last Name</td>
-                      <td>Username</td>
+                        <td>Company Name</td>
+                        <td>Drive Date</td>
+                        <td>Placement Type</td>
+                        <td>Placement Venue</t>
+                        <td>SSLC (%)</t>
+                        <td>PU/Dip (%)</td>
+                        <td>BE (%)</td>
+                        <td>Backlogs</td>
+                        <td>HOF Backlogs</td>
+                        <td>Detain Years</td>
+                        <td>Other Details</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>harsh</td>
-                      <td>Solanki</td>
-                      <td>@hs</td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Rolex</td>
-                      <td>Daas</td>
-                      <td>@rd</td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Harold</td>
-                      <td>Das</td>
-                      <td>@ld</td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Leo</td>
-                      <td>Das</td>
-                      <td>@ld</td>
-                    </tr>
-                    <tr>
-                      <td>5.</td>
-                      <td>Antony</td>
-                      <td>Das</td>
-                      <td>@ad</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div> <!-- Second row ends -->
+                </thead>
+                <tbody>
+                    <?php while ($row = $upcomingDrives->fetch_assoc()): ?>
+                        <tr>
+                            <td><?php echo $row['CompanyName']; ?></td>
+                            <td><?php echo date("d-m-Y", strtotime($row['Date'])); ?></td>
+                            <td><?php echo $row['C/P'] == 1 ? 'Campus' : 'Pool'; ?></td>
+                            <td><?php echo $row['PVenue']; ?></td>
+                            <td><?php echo $row['SSLC']; ?></td>
+                            <td><?php echo $row['PU/Dip']; ?></td>
+                            <td><?php echo $row['BE']; ?></td>
+                            <td><?php echo $row['Backlogs']; ?></td>
+                            <td><?php echo $row['HofBacklogs'] == 1 ? 'Yes' : 'No'; ?></td>
+                            <td><?php echo $row['DetainYears']; ?></td>
+                            <td><?php echo $row['ODetails']; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <p>No upcoming placement drives.</p>
+        <?php endif; ?>
+    </div>
+</div>
 
+        <!-- Upcoming Interviews Table -->
+        <div class="templatemo-content-container">
+          <h2>Upcoming Interview</h2>
+            <div class="templatemo-content-widget no-padding">
+                <div class="panel panel-default table-responsive">
+                <?php if ($interviews_result->num_rows > 0) : ?>
+                    <table class="table table-striped table-bordered templatemo-user-table">
+                        <thead>
+                            <tr>
+                                <td>Company Name</td>
+                                <td>USN</td>
+                                <td>Interview Date</t>
+                                <td>Mode</td>
+                                <td>Venue</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $interviews_result->fetch_assoc()) : ?>
+                                <tr>
+                                    <td><?php echo $row['company_name']; ?></td>
+                                    <td><?php echo $row['USN']; ?></td>
+                                    <td><?php echo date('d M Y, H:i', strtotime($row['interview_at'])); ?></td>
+                                    <td><?php echo $row['mode']; ?></td>
+                                    <td><?php echo $row['venue']; ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                <?php else : ?>
+                    <p>No upcoming interviews.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+       
+      
         <footer class="text-right">
           <p>Copyright &copy; 2024 Hmc-PMS | Developed by
             <a href="#" target="_parent">Hmc FutureTechnologies</a>
@@ -285,10 +355,8 @@ echo "<h1>" . $Welcome . "<br>" . $_SESSION['priusername'] . "</h1>";
     </div>
   </div>
 
-  <!-- JS -->
-  <script src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
-  <script src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
-  <script src="https://www.google.com/jsapi"></script> Google Chart
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
   <script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
 

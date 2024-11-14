@@ -65,9 +65,9 @@
         <nav class="templatemo-left-nav">          
           <ul>
             <li><a href="#" class="active"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>    
-            <li><a href="manage-students.php"><i class="fa fa-users fa-fw"></i>View Students</a></li>
+            <li><a href="view-students.php"><i class="fa fa-users fa-fw"></i>View Students</a></li>
             <li><a href="preferences.php"><i class="fa fa-sliders fa-fw"></i>Preferences</a></li>
-            <li><a href="approve2.php"><i class="fa fa-sliders fa-fw"></i>Manage Students</a></li>
+            <li><a href="manage-students.php"><i class="fa fa-sliders fa-fw"></i>Manage Students</a></li>
             <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
           </ul>  
         </nav>

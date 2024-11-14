@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($company_id) && !empty($comp
                 
                 if ($stmt->execute()) {
                     $message = "Company ID: $company_id with name '$company_name' approved successfully.";
+                    
                 } else {
                     $message = "Error updating company: " . $stmt->error;
                 }
@@ -133,7 +134,7 @@ $link->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approval Status</title>
-    <meta http-equiv='refresh' content='3; url=approve2.php'> <!-- Redirect after 3 seconds -->
+    <meta http-equiv='refresh' content='3; url=manage-company.php'> 
     <style>
         body {
             font-family: Arial, sans-serif;
