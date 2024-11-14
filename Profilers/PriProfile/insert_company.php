@@ -134,9 +134,24 @@ if (isset($_POST['insert'])) {
             <input type="email" name="email" id="email" required>
         </div>
         <div class="form-group">
-            <label for="question">Security Question</label>
-            <input type="text" name="question" id="question" value="What is your favorite movie?" readonly>
-        </div>
+                <label for="question">Security Question:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-question-circle"></i>
+                    </div>
+                    <select name="Question" class="form-control" required>
+                        <option value="What is your nickname?">What is your nickname?</option>
+                        <option value="What is your fav spot?">What is your fav spot?</option>
+                        <option value="What is your fav dish?">What is your fav dish?</option>
+                        <option value="What is your dream land address?">What is your dream land address?</option>
+                        <option value="What is your first mobile number?">What is your first mobile number?</option>
+                        <option value="What is your one truth which others don’t know?">What is your one truth which others don’t know?</option>
+                        <option value="What is your detained years in life?">What is your detained years in life?</option>
+                        <option value="What is your enemy's name?">What is your enemy's name?</option>
+                        <option value="What is your pet's name?">What is your pet's name?</option>
+                    </select>
+                </div>
+            </div>
         <div class="form-group">
             <label for="answer">Security Answer</label>
             <input type="text" name="answer" id="answer" value="Vikram" readonly>
