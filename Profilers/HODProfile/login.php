@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (isset($_SESSION["priusername"])) {
+if (isset($_SESSION["husername"])) {
 
 } else {
     header("location: index.php");
@@ -165,7 +165,7 @@ $connect->close();
           <div class="square"></div>
           <?php
 $Welcome = "Welcome";
-echo "<h1>" . $Welcome . "<br>" . $_SESSION['priusername'] . "</h1>";
+echo "<h1>" . $Welcome . "<br>" . $_SESSION['husername'] . "</h1>";
 ?>
       </header>
       <div class="profile-photo-container">
@@ -183,16 +183,13 @@ echo "<h1>" . $Welcome . "<br>" . $_SESSION['priusername'] . "</h1>";
         <i class="fa fa-bars"></i>
       </div>
       <nav class="templatemo-left-nav">
-        <ul>
-          <li><a href="login.php" class="active"><i class="fa fa-home fa-fw" class="active"></i>Dashboard</a></li>
-          <li><a href="Students Eligibility.php"><i class="fa fa-bar-chart fa-fw"></i>Check Students Eligibility</a>
-          </li>
-          <li><a href="queries.php"><i class="fa fa-database fa-fw"></i>Queries</a></li>
-          <li><a href="manage-users.php"><i class="fa fa-users fa-fw"></i>Student Details</a></li>
-          <li><a href="manage-company.php"><i class="fa fa-users fa-fw"></i>Manage Company</a></li>
-          <li><a href="manage-hod.php"><i class="fa fa-users fa-fw"></i>Manage HOD</a></li>
-          <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
-        </ul>
+          <ul>
+            <li><a href="login.php" class="active" ><i class="fa fa-home fa-fw"></i>Dashboard</a></li>    
+            <li><a href="view-students.php"><i class="fa fa-users fa-fw"></i>View Students</a></li>
+            <li><a href="preferences.php"  ><i class="fa fa-sliders fa-fw"></i>Preferences</a></li>
+            <li><a href="manage-students.php" ><i class="fa fa-sliders fa-fw"></i>Manage Students</a></li>
+            <li><a href="logout.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+          </ul>
       </nav>
     </div>
     <!-- Main content -->
