@@ -144,7 +144,7 @@ if (isset($_POST['delete'])) {
 <body>
 
 <div class="container">
-    <h2>Delete Company</h2>
+    <h2>Delete Student</h2>
     <form method="POST" action="">
         <div class="form-group">
             <label for="companyname">USN</label>
@@ -163,7 +163,7 @@ if (isset($_POST['delete'])) {
 
 <script>
 function confirmDelete() {
-    return confirm("Are you sure you want to delete this company? This action cannot be undone.");
+    return confirm("Are you sure you want to delete this Student? This action cannot be undone.");
 }
 
 // Check if the URL has a success or error parameter and display corresponding alert
