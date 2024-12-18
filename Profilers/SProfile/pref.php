@@ -34,7 +34,7 @@ if (isset($_POST['submit']) || isset($_POST['update'])) {
     $detyear = $_POST['Dety'];
 
     // Set up the file upload path and file type checking
-    $targetDir = "SProfile/uploads/";
+    $targetDir = "..SProfile/uploads/";
     $fileName = "";
     $resumeUploaded = false;
 
@@ -112,7 +112,7 @@ if (isset($_POST['submit']) || isset($_POST['update'])) {
                 }
 
                 if ($stmt->execute()) {
-                    echo "<center>Data inserted successfully...!!Once YOu CAn Appy After It Is Approved By Administrating Staff!!</center>";
+                    echo "<center>Data inserted successfully...!!Once YOu Can Appy After It Is Approved By Administrating Staff!!</center>";
                 } else {
                     echo "<center>Failed to insert data</center>";
                 }

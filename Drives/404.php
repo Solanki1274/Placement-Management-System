@@ -5,8 +5,7 @@
 <title>Events</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tillage Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstarp-css -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -108,24 +107,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="mail.php">Mail Us</a>
 						</li>
 					</ul>
-					<form>
-						<input type="text" placeholder="Email" required="">
-						<input type="submit" value="Subscribe">
-					</form>
+				
 				</div>
 				<div class="col-md-3 footer-middle wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
 					<h3>Address</h3>
 					<div class="address">
-						<p>CIT, NH 206 BH Road
-							<span>Gubbi,Tumkur</span>
+						<p>Hmc, NH 48,
+							<span>Matar,Sasoon Dock,Mumbai</span>
 						</p>
 					</div>
 					<div class="phone">
-						<p>+91 8131 223818/223365</p>
+						<p>+91 9723947850</p>
 					</div>
 				</div>
 				<div class="col-md-3 footer-right  wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-					<h6 style="color: white">Channabasaveshwara Institute of Technology</h6>
+					<h6 style="color: white">Hmc Institute of Technology</h6>
 					<h4>
 						<a href="../Homepage/index.php" style="color: white">Placement Management System</a>
 					</h4>
@@ -140,8 +136,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- container -->
 			<div class="container">
 				<div class="copyright-left wow fadeInLeft animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-					<p>Copyrights © 2015 CIT-PMS . Developed by
-						<a href="http://wafferdevelopers.com/">Waffer Developers</a>
+					<p>Copyrights © 2015 Hmc-PMS . Developed by
+						<a href="#">Hmc Developers</a>
 					</p>
 				</div>
 				<div class="copyright-right wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">

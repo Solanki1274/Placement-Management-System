@@ -3,15 +3,10 @@
 	<head>
 		<!--favicon-->
         <link rel="shortcut icon" href="favicon.ico" type="image/icon">
-        <link rel="icon" href="favicon.ico" type="image/icon">
+        <link rel="icon" href="images/favicon.ico" type="image/icon">
 		<title>Placement Drives Home</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/php; charset=utf-8" />
-		<meta name="keywords" content="Tillage Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-		<script type="application/x-javascript">
-			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
-		</script>
 		<!-- bootstarp-css -->
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<!--// bootstarp-css -->
@@ -42,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</span>
 						<ul class="nav1">
 							<li class="hvr-sweep-to-bottom">
-								<a href="../Homepage/index.php">CIT-PMS<i>Goto Placement Homepage</i></a>
+								<a href="../Homepage/index.php">Hmc-PMS<i>Goto Placement Homepage</i></a>
 							</li>
 							<li class="hvr-sweep-to-bottom active">
 								<a href="index.php">Home<i>Get the Overview of the Site</i></a>
@@ -75,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">
 				<script src="js/responsiveslides.min.js"></script>
 				<script>
-					// You can also use "$(window).load(function() {"
+					
 						$(function () {
 						  // Slideshow 4
 						  $("#slider3").responsiveSlides({
@@ -137,9 +132,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="jumbotron banner-bottom-left wow fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; -webkit-animation-delay: 0.5s;	">
 							<h3>Latest Drive</h3>
 							<h5>Drive Description
-								<span>ABC Corporation</span>
+								<span>Rolex Corporation</span>
 							</h5>
-							<p>Few Lines about Drive</p>
+							<p>For An Post oF A senior Software Developer</p>
 							<div class="see-button">
 								<a class="btn btn-primary btn-lg see-button hvr-shutter-out-horizontal" href="1.php" role="button">See More</a>
 							</div>
@@ -274,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<div class="col-md-3 footer-right  wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-					<h6 style="color: white">Channabasaveshwara Institute of Technology</h6>
+					<h6 style="color: white">Hmc Institute of Technology</h6>
 					<h4>
 						<a href="../Homepage/index.php" style="color: white">Placement Management System</a>
 					</h4>

@@ -5,13 +5,9 @@
 	<!--favicon-->
 		<link rel="shortcut icon" href="favicon.ico" type="image/icon">
 		<link rel="icon" href="favicon.ico" type="image/icon">
-<title>CIT-PMS | Contact Us</title>
+<title>Hmc-PMS | Contact Us</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tillage Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- css -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 <!--// css -->
 <!-- bootstarp-css -->
@@ -40,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="menu"><img src="images/menu.png" alt=""></span>
 					<ul class="nav1">
 						<li class="hvr-sweep-to-bottom">
-								<a href="../Homepage/index.php">CIT-PMS<i>Goto Placement Homepage</i></a>
+								<a href="../Homepage/index.php">Hmc-PMS<i>Goto Placement Homepage</i></a>
 							</li>
 						<li class="hvr-sweep-to-bottom">
 								<a href="index.php">Home<i>Get the Overview of the Site</i></a>
@@ -77,21 +73,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!-- container -->
 		<div class="container">
 			<div class="map footer-middle wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-				<iframe src="https://www.google.com/maps/embed/v1/place?q=Sri%20Channabasaveshwara%20Institute%20of%20Technology%2C%20Harivesandra%2C%20Karnataka%2C%20India&key=AIzaSyATLPQdEcx47VybeMCQzR36pLuNuItNKP8"" frameborder="0" style="border:0"></iframe>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7361.123569659039!2d72.65762184239274!3d22.7073515148438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395ef5d4dbc30751%3A0x2ae600005d19c93a!2z4Kqu4Kq-4Kqk4KqwLCDgqpfgq4HgqpzgqrDgqr7gqqQgMzg3NTMw!5e0!3m2!1sgu!2sin!4v1734524051488!5m2!1sgu!2sin" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 			</div>
 			<div class="mail-grids">
 				<div class="col-md-6 mail-grid-left wow fadeInLeft animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
 					<h3>Contact Us</h3>	
 					<p></p>				
-					<h4>Channabasaveshwara Institute of Technology</h4>
-					<p>NH 206 BH Road,
-						<span>Gubbi, Tumkur, Karnataka</span>
+					<h4>Hmc Institute of Technology</h4>
+					<p>NH 48 ,
+						<span>Matar, Sasoon Dock, Mumbai</span>
 						India IN-572 216
 					</p>
 					<h4>Get In Touch</h4>
-					<p>Telephone: +91 8131-223818/223365
-						<span>FAX: +91 8131-223177</span>
-						E-mail: <a href="mailto:citcollege@rediffmail.com">citcollege@rediffmail.com</a>
+					<p>Telephone: +91 9723947850
+						<span>FAX: +91 9429074195</span>
+						E-mail: <a href="mailto:solankiatulr2011@gmail.com">solankiatulr2011@gmail.com</a>
 					</p>
 				</div>
 				<div class="col-md-6 contact-form wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
@@ -131,24 +127,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a href="mail.php">Mail Us</a>
 						</li>
 					</ul>
-					<form>
-						<input type="text" placeholder="Email" required="">
-						<input type="submit" value="Subscribe">
-					</form>
+
 				</div>
 				<div class="col-md-3 footer-middle wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
 					<h3>Address</h3>
 					<div class="address">
-						<p>CIT
-							<span>Gubbi, Tumkur</span>
+						<p>Hmc
+							<span>Sasoon Dock, Mumbai</span>
 						</p>
 					</div>
 					<div class="phone">
-						<p>1234567890</p>
+						<p>+91 9723947850</p>
 					</div>
 				</div>
 				<div class="col-md-3 footer-right  wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-					<h6 style="color: white">Channabasaveshwara Institute of Technology</h6>
+					<h6 style="color: white">Hmc Institute of Technology</h6>
 					<h4>
 						<a href="../Homepage/index.php" style="color: white">Placement Management System</a>
 					</h4>
@@ -163,8 +156,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- container -->
 			<div class="container">
 				<div class="copyright-left wow fadeInLeft animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-					 <p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+					 <p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="" target="_parent">Hmc FutureTechnologies</a>
 				</div>
 				<div class="copyright-right wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
 					<ul>

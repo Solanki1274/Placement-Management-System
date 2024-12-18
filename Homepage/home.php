@@ -9,7 +9,7 @@
         <meta name="author" content="">
         <!--favicon-->
         <link rel="shortcut icon" href="favicon.ico" type="image/icon">
-        <link rel="icon" href="favicon.ico" type="image/icon">
+        <link rel="icon" href="images/favicon.ico" type="image/icon">
         <title>CIT-PMS Home</title>
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -18,19 +18,13 @@
         <!-- Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
         rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-        rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
         <!-- Plugin CSS -->
         <link rel="stylesheet" href="css/animate.min.css" type="text/css">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/creative.css" type="text/css">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+
     </head>
     
     <body id="page-top">
@@ -45,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand page-scroll" href="http://www.cittumkur.org">Channabasaveshwara Institute of Technology</a>
+                    <a class="navbar-brand page-scroll" href="#">Hmc Institute of Technology</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -124,14 +118,14 @@
 				</div>
 				<div class="col-md-3 get_in_touch ftr">
 					<h3>GET IN TOUCH</h3>
-					<p>NH4, Herur</p>
-					<p>Gubbi, Tumkur, India</p>
+					<p>NH48, Matar</p>
+					<p>Sasoon Dock, Mumbai, India</p>
 					<p>08138-223818/223365</p>
-					<a href="mailto:cittumkur@rediffmail.com">cittumkur@rediffmail.com</a>
+					<a href="mailto:solankiatulr2011@gmail.com">solankiatulr2011@gmail.com</a>
 				</div>
 				<div class="col-md-3 ftr-logo">
-					<p>Copyright &copy; 2015 CIT-PMS | Developed by
-              <a href="http://znumerique.azurewebsites.net" target="_parent">ZNumerique Technologies</a>
+					<p>Copyright &copy; 2024 Hmc-PMS | Developed by
+              <a href="" target="_parent">Hmc FutureTechnologies</a>
 				</div>
 				<div class="clearfix"></div>
 			</div>

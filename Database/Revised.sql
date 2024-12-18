@@ -223,8 +223,8 @@ CREATE TABLE IF NOT EXISTS `hlogin` (
 -- Dumping data for table `hlogin`
 --
 
-INSERT INTO `hlogin` (`Id`, `Name`, `Username`, `Password`, `Email`, `Question`, `Answer`, `Branch`) VALUES
-(1, 'Ajay Rathod', 'ajay', 'Ajay@123', 'fastnag@gmail.com', 'What is your fav spot?', 'Bangalore', 'CSE');
+INSERT INTO `hlogin` (`Id`, `FirstName`,`LastName`, `Username`, `Password`, `Email`, `Question`, `Answer`, `Branch`) VALUES
+(1, 'Ajay Rathod', 'ajay','rathod', 'Ajay@123', 'fastnag@gmail.com', 'What is your fav spot?', 'Bangalore', 'CSE');
 
 -- --------------------------------------------------------
 
