@@ -1,4 +1,43 @@
-﻿
+﻿<?php
+// Database connection
+$servername = "localhost"; 
+$username = "harsh";        
+$password = "harsh2005";      
+$database = "placement";     
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $conn->real_escape_string($_POST['name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $subject = $conn->real_escape_string($_POST['subject']);
+    $message = $conn->real_escape_string($_POST['message']);
+
+    // Insert data into the database
+    $sql = "INSERT INTO contact_form (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$message')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>
+                alert('Thank you for contacting us! We will get back to you soon.');
+                window.location.href = 'mail.php'; // Redirect back to the contact page
+              </script>";
+    } else {
+        echo "<script>
+                alert('An error occurred. Please try again later.');
+                window.location.href = 'mail.php'; // Redirect back to the contact page
+              </script>";
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,13 +130,14 @@
 					</p>
 				</div>
 				<div class="col-md-6 contact-form wow fadeInRight animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-					<form>
-						<input type="text" placeholder="Name" required="">
-						<input type="text" placeholder="Email" required="">
-						<input type="text" placeholder="Subject" required="">
-						<textarea placeholder="Message" required=""></textarea>
+				<form action="mail.php" method="POST">
+						<input type="text" name="name" placeholder="Name" required="">
+						<input type="email" name="email" placeholder="Email" required="">
+						<input type="text" name="subject" placeholder="Subject">
+						<textarea name="message" placeholder="Message" required=""></textarea>
 						<input type="submit" value="SEND">
 					</form>
+
 				</div>
 				<div class="clearfix"> </div>
 			</div>

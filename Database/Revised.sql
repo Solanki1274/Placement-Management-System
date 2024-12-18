@@ -354,3 +354,13 @@ CREATE TABLE IF NOT EXISTS `interviews` (
     FOREIGN KEY (`Name`) REFERENCES `addpdrive`(`CompanyName`) ON DELETE CASCADE,
     FOREIGN KEY (`USN`) REFERENCES `basicdetails`(`USN`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE contact_form (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    subject VARCHAR(255),
+    message TEXT NOT NULL,
+    submission_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
