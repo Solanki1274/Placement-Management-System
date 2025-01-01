@@ -7,8 +7,7 @@
 <title>Drives :: About</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Tillage Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstarp-css -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -39,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="menu"><img src="images/menu.png" alt=""></span>
 					<ul class="nav1">
 						<li class="hvr-sweep-to-bottom">
-								<a href="../Homepage/index.php">CIT-PMS<i>Goto Placement Homepage</i></a>
+								<a href="../Homepage/index.php">Hmc-PMS<i>Goto Placement Homepage</i></a>
 							</li>
 						<li class="hvr-sweep-to-bottom">
 								<a href="index.php">Home<i>Get the Overview of the Site</i></a>
@@ -89,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="jumbotron banner-bottom-left wow fadeInLeft animated animated" data-wow-delay="0.5s" style="visibility: visible; -webkit-animation-delay: 0.5s;">
 					  <h3>Placement and Training Department</h3>
 						<h5></span></h5>
-						<p>Our Institute is located near Tumkur, a well known place of learning. Our college is affiliated to Visvesvaraya Technological University, Belgaum (Karnataka), recognized by AICTE, New Delhi, & by Government of Karnataka. Within a short span of 10 years we have made our presence felt strongly in this competitive educational sector and we have many firsts to our credit. Our ISO Certification and NBA Accreditation speak of our commitment to quality systems and education. Our credentials are well appreciated by many industries, engineering institutes, professional bodies, government organizations etc. In the recent past our institute has been rated A Grade and is included among “THE BEST ENGINEERING COLLEGES IN INDIA” by Career360, a popular magazine promoted by OUTLOOK Group. 
+						<p>Welcome to HMC Institute of Technology – where academic excellence meets innovation in engineering education. Located in the vibrant learning hub of Tumkur, Karnataka, our institution stands as a beacon of quality technical education. Affiliated with the prestigious Visvesvaraya Technological University and recognized by AICTE, New Delhi, we have established ourselves as a leading engineering institute within just a decade of our inception. Our commitment to excellence is reflected in our ISO Certification and NBA Accreditation, marking our dedication to maintaining the highest educational standards. We take pride in being rated 'A' Grade and recognized among "The Best Engineering Colleges in India" by Career360, a distinguished publication of the OUTLOOK Group. Our strong relationships with industries, professional bodies, and government organizations have created a dynamic ecosystem that prepares our students for successful careers in engineering. At HMC Institute of Technology, we don't just impart education – we shape the future leaders of tomorrow's technological world.
 						</p>
 					</div>
 				</div>
@@ -130,17 +129,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3 class="wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">Meet Our Team</h3>
 				<div class="team-grids">
 					<div class="col-md-3 team-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-						<img src="images/b7.jpg" alt="">
-						<h6>Shantala Suresh</h6>
+						<img src="images/vijay.jpg" alt="">
+						<h6>Antony Joseph</h6>
 						<p> Vice-Principal and HOD CSE Department</p>
 					</div>
 					<div class="col-md-3 team-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-						<img src="images/b10.jpg" alt="">
+						<img src="images/surya.jpg" alt="">
 						<h6>Name</h6>
 						<p>Designation</p>
 					</div>
 					<div class="col-md-3 team-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-						<img src="images/b8.jpg" alt="">
+						<img src="images/tovino.jpg" alt="">
 						<h6>Name</h6>
 						<p> Designation</p>
 					</div>

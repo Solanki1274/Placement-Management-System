@@ -55,7 +55,7 @@ $total_records = $count_result->fetch_assoc()['total'];
 $total_pages = ceil($total_records / $limit);
 
 // Fetch paginated interview details
-$query = "SELECT id, Name AS company_name, USN, interview_at, mode, venue, status 
+$query = "SELECT id, Name AS company_name, USN, interview_at, mode, venue 
           FROM interviews 
           WHERE USN = ? 
           LIMIT ? OFFSET ?";

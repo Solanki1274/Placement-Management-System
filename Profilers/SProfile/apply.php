@@ -76,11 +76,13 @@ if ($result->num_rows > 0) {
                     FROM applications a 
                     WHERE a.usn = ?";
     $applied_stmt = $conn->prepare($applied_sql);
-    $applied_stmt->bind_param("s", $usn);
-    $applied_stmt->execute();
-    $applied_result = $applied_stmt->get_result();
-
-
+    if ($applied_stmt) {
+        $applied_stmt->bind_param("s", $usn);
+        $applied_stmt->execute();
+        $applied_result = $applied_stmt->get_result();
+    } else {
+        echo "<script>alert('Error preparing applied statement.');</script>";
+    }
 } else {
     // Handle case where no user is found
     echo "<script>alert('No user found with the specified USN.');</script>";
@@ -88,9 +90,12 @@ if ($result->num_rows > 0) {
 
 // Clean up
 $stmt->close();
-$applied_stmt->close();
+if (isset($applied_stmt)) {
+    $applied_stmt->close();
+}
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

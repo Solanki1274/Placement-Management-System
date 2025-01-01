@@ -525,9 +525,12 @@ background: none;
   position: relative;	
 }
 .service-box .icon img {
-  position: relative;
-  z-index: 100;
-  transition: all 0.3s ease 0s;
+    position: relative;
+    z-index: 89;
+    height: 50%;
+    width: 50%;
+    margin-top: 22px;
+    transition: all 0.3s ease 0s;
 }
 .service-box .icon:before {
   content: '';
@@ -581,12 +584,13 @@ color: #333333;
 }
 /*-- testimonial --*/
 .testimonials {
-  background: url(../images/Originals/crowd.jpg) no-repeat 0px 0px;
+  background: url(../images/Originals/clg1.jpg) no-repeat 0px 0px;
   background-size: cover;
-  min-height: 331px;
+  min-height: 445px;
   padding: 3em 0;
   position: relative;
   text-align: center;
+  align-items: center;
 }
 .testmonials div.head-section {
   margin-top: 1em;
@@ -594,7 +598,7 @@ color: #333333;
 .testimonial-nfo h3 {
   color: #FFF;
   font-size: 40px;
-  font-weight: 300;
+  font-weight:bold;
   margin: 0;
 }
 .testimonial-nfo h5 {
@@ -602,7 +606,7 @@ color: #333333;
   font-size: 14px;
   margin: 1em 0;
   line-height: 1.8em;
-  font-weight: 300;
+  font-weight: bold;
 }
 .testimonial-nfo h5 span{
 	display:block;

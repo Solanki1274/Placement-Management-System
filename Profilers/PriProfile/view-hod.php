@@ -136,8 +136,8 @@ echo "<h1>" . $Welcome . "<br>" . $_SESSION['priusername'] . "</h1>";
             <?php if ($result->num_rows > 0): ?>
                 <?php while($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo $row['Firstname']; ?></td>
-                        <td><?php echo $row['Lastname']; ?></td>
+                        <td><?php echo $row['FirstName']; ?></td>
+                        <td><?php echo $row['LastName']; ?></td>
                         <td><?php echo $row['Username']; ?></td>
                         <td><?php echo $row['Password']; ?></td>
                         <td><?php echo $row['Email']; ?></td>

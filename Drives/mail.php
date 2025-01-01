@@ -45,6 +45,7 @@ $conn->close();
 		<link rel="shortcut icon" href="favicon.ico" type="image/icon">
 		<link rel="icon" href="favicon.ico" type="image/icon">
 <title>Hmc-PMS | Contact Us</title>
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
@@ -121,7 +122,7 @@ $conn->close();
 					<h4>Hmc Institute of Technology</h4>
 					<p>NH 48 ,
 						<span>Matar, Sasoon Dock, Mumbai</span>
-						India IN-572 216
+						India IN-387 530
 					</p>
 					<h4>Get In Touch</h4>
 					<p>Telephone: +91 9723947850

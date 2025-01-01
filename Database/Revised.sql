@@ -301,6 +301,7 @@ CREATE TABLE IF NOT EXISTS `slogin` (
   `Email` varchar(255) NOT NULL,
   `Question` varchar(255) NOT NULL,
   `Answer` varchar(255) NOT NULL,
+  `Approved` TINYINT(1) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`),
   UNIQUE KEY `USN` (`USN`,`Email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
@@ -364,3 +365,12 @@ CREATE TABLE contact_form (
     message TEXT NOT NULL,
     submission_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE notification (
+    id INT AUTO_INCREMENT PRIMARY KEY, -- Unique ID for each notification
+    sender_id INT NOT NULL,            -- ID of the sender
+    receiver_id INT NOT NULL,          -- ID of the receiver
+    message TEXT NOT NULL,             -- Notification message
+    is_read TINYINT(1) DEFAULT 0,      -- 0 = unread, 1 = read
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp of creation
+);
+

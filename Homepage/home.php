@@ -68,7 +68,7 @@
                 <div class="header-content-inner">
                     <h1>PLACEMENT MANAGEMENT SYSTEM</h1>
                     <hr>
-                    <p>We are here to Build your Skills and Career with our Driven Passion and Reality.</br>Click Below to Get Our Current Drive
+                    <p>We are here to Build<span> your Skills and</span> Career with our Driven Passion and<span> Reality.</span></br>Click <span>Below to </span>Get Our Current Drive
                         Details</p>
                     <a href="../Drives/index.php" class="btn btn-primary btn-xl page-scroll">Current Drives</a>
                 </div>
